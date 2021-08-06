@@ -1,0 +1,17 @@
+{
+  "irc": {
+    "debug": true,
+    "logs": "./logs",
+    "port": 6667,
+    "servername": "irc-prime.source.tools",
+    "version": "SourceDigital IRC Server (PRIME)",
+    "operators": {
+      "admin":"bCDP2MNGpN2Vkabh"
+    },
+    "admin_info": {
+      "info1" : "Hello! Welcome to SourceSync.io! Using this service will bind you to our terms of service.",
+      "info2" : "https://www.sourcedigital.net/terms-of-service",
+      "email" : "help@sourcedigital.net"
+    }
+  }
+}

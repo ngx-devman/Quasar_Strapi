@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "domains",
+  "info": {
+    "name": "domain",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "mainImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "settings": {
+      "type": "json"
+    },
+    "keywords": {
+      "type": "json",
+      "description": "Keywords that describe this entity. Must be an JSON array."
+    },
+    "organizations": {
+      "via": "domain",
+      "collection": "organizations"
+    },
+    "users": {
+      "via": "domains",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "hidden": {
+      "type": "json",
+      "private": true
+    }
+  }
+}

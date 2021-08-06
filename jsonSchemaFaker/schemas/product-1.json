@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "required": ["version", "meta"],
+    "properties": {
+        "version": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "meta": {
+            "type": "object",
+            "required": ["storefront", "productId", "start", "end"],
+            "properties": {
+            "storefront": {
+                "type": "string"
+            },
+            "productId": {
+                "type": "string"
+            },
+            "start": {
+                "type": "number",
+                "minimum": 0
+            },
+            "end": {
+                "type": "number",
+                "minimum": 0
+            },
+            "timeline": {
+                "type": "string",
+                "enum": ["content", "session", "live"]
+            }
+            }
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "price": {
+                    "type": "number"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

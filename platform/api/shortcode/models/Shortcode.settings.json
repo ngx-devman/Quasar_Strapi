@@ -1,0 +1,26 @@
+{
+  "collectionName": "shortcodes",
+  "info": {
+    "name": "shortcode",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "code": {
+      "unique": true,
+      "type": "string"
+    },
+    "url": {
+      "required": true,
+      "type": "string"
+    },
+    "counter": {
+      "type": "biginteger",
+      "default": "0"
+    }
+  }
+}

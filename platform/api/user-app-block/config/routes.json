@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/user-app-blocks",
+      "handler": "user-app-block.find",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-app-blocks/:id",
+      "handler": "user-app-block.findOne",
+      "config": {
+        "policies": ["global::basicAuth", "global::isOwner"]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user-app-blocks",
+      "handler": "user-app-block.create",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/user-app-blocks/:id",
+      "handler": "user-app-block.update",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/user-app-blocks/:id",
+      "handler": "user-app-block.delete",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    }
+  ]
+}

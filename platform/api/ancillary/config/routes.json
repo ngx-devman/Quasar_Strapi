@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/ancillary/:id",
+      "handler": "Ancillary.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ancillary/:id",
+      "handler": "Ancillary.find",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

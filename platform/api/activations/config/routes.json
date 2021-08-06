@@ -1,0 +1,75 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/activations",
+      "handler": "activations.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/activations/count",
+      "handler": "activations.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/activations/:id",
+      "handler": "activations.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/activations/identifier/:id",
+      "handler": "activations.identifier",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/activations/populate",
+      "handler": "activations.populate",
+      "config": {
+        "description": "Populates activation list.",
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/activations",
+      "handler": "activations.create",
+      "config": {
+        "policies": [
+          "global::isOwner"
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/activations/:id",
+      "handler": "activations.update",
+      "config": {
+        "policies": [
+          "global::isOwner"
+        ]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/activations/:id",
+      "handler": "activations.delete",
+      "config": {
+        "policies": [
+          "global::isOwner"
+        ]
+      }
+    }
+  ]
+}

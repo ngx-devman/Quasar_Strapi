@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "template_blocks",
+  "info": {
+    "name": "template_block"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "block": {
+      "model": "apps"
+    },
+    "template": {
+      "model": "template"
+    },
+    "order": {
+      "type": "string"
+    }
+  }
+}

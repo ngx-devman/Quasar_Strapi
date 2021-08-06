@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/user/shipping",
+      "handler": "Users.addShipping",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user/billing",
+      "handler": "Users.addBilling",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user/info",
+      "handler": "Users.viewInfo",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

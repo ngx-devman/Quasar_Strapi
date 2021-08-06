@@ -1,0 +1,98 @@
+{
+  "kind": "collectionType",
+  "collectionName": "Apps",
+  "info": {
+    "name": "Apps",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": "",
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "settings": {
+      "type": "json"
+    },
+    "data": {
+      "type": "json"
+    },
+    "publisher": {
+      "model": "organizations"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "Application",
+        "Activation",
+        "ActivationPreview",
+        "Feed",
+        "storefront",
+        "template"
+      ],
+      "type": "enumeration",
+      "default": "storefront"
+    },
+    "category": {
+      "enum": [
+        "AI",
+        "Analytics",
+        "Content",
+        "eCommerce",
+        "Data",
+        "Payments"
+      ],
+      "type": "enumeration"
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "version": {
+      "type": "string"
+    },
+    "integrations": {
+      "type": "biginteger"
+    },
+    "downloads": {
+      "type": "biginteger"
+    },
+    "slug": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 50,
+      "minLength": 3,
+      "required": true
+    },
+    "privacy": {
+      "type": "string"
+    },
+    "terms": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "details": {
+      "type": "text"
+    },
+    "support": {
+      "type": "email"
+    },
+    "billing": {
+      "type": "json"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "repo": {
+      "type": "string"
+    }
+  }
+}

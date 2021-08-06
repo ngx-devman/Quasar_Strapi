@@ -1,0 +1,36 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/payments/:platform",
+      "handler": "Payments.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/paymentsuccess",
+      "handler": "Payments.paymentsuccess",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/paymentcancel",
+      "handler": "Payments.paymentcancel",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stripe-key/:cartID",
+      "handler": "Payments.getStripeKey",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

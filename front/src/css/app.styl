@@ -1,0 +1,362 @@
+/*
+  Style guide
+
+  We do not modify the CSS of any HTML elements
+    Aside of being messy and overwriting user preferences, to play nice with other apps,
+    we simply can't do this and expect our app work with other apps on the same page
+    without an iframe or other limiting wrappers.
+
+  We use Symantic instead of Atomic naming
+    Basically, we choose to use "thingWrapper" instead of "padding-left-20 red".
+    Although Quasar offers atomic CSS helpers, they are meant to aid in swift construction,
+    not become a crutch to development. Although this requires more initial thought than
+    atomic names, this has been proven to be more maintainable and is recommended by the
+    CSS3 and HTML5 specs. It's also easier to understand and debug, and requires less
+    training and coding. For more information, see: https://maintainablecss.com/chapters/semantics/
+
+  BEM (Block Element and Modifier) is not sufficent for our usecase
+     Aside of BEM being opinionated and ugly, it's not enough if you share namespace with
+     other apps, and it can grow to be very ugly and pedantic in large apps.
+     See https://zellwk.com/blog/css-architecture-2/ for more details.
+
+  We use namespacing
+    We prepend everything with our namespace, which is "sd".
+    This makes it more likely that our CSS names will play nice with other frameworks
+  
+  We use cammelCase for symantic names
+    i.e. thingWrapper instead of thing-wrapper or thing_wrapper. Dashes and underscores can cause issues in passing data and schemas.
+    The first letter of a word is always lowercase.
+    Subsequent letters in following words always have their first letter capitalized "likeThisForExample"
+
+  We use dashes to separarte namespaces
+    i.e. sd-thingWrapper instead of sdthingWrapper or sd_thingWrapper
+
+  We also use dashes to separate parent-child relationships that require specific links are made in the same class
+    i.e. sd-parentComponent-childComponent
+*/
+
+// ### Things
+
+/*
+ Default wrapper
+ Requirements
+  * 80% opaque
+  * 10px padding
+ */
+
+// ### Adding debug to any element will highlight it.
+
+[debug], [debug] *:not(g):not(path) {
+  color:                 hsla(210, 100%, 100%, 0.9) !important;
+  background:            hsla(210, 100%,  50%, 0.5) !important;
+  outline: solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+
+  box-shadow: none !important;
+  filter:     none !important;
+}
+
+// Makes plyr (video and audio experiences) the scrub bar take up the entre remaining space at the bottom
+.plyr__progress__container
+    flex 1
+// Plyr slider thumb resize
+.plyr--full-ui input[type='range']
+  // Chrome
+  &::-webkit-slider-thumb
+    height 0.7em!important
+    width 0.7em!important
+    margin-top -2px!important
+  // Firefox
+  &::-moz-range-thumb
+    height 0.7em!important
+    width 0.7em!important
+    margin-top -2px!important
+// Volume styling
+.sdVolumeBtnContainer
+  margin-right 7px
+.sdVolumeRange
+  opacity 0
+.sdVolumeRange.plyr__volume, .sdVolumeBtnContainer.plyr__volume
+  flex 0!important
+  width 20px
+  min-width 20px
+  transition: all 0.7s
+  transition-timing-function: cubic-bezier(1, 0.7, 0.5, 0.3)
+.sdVolumeBtnContainer:hover + .sdVolumeRange
+  flex 1!important
+  opacity 1
+.sdVolumeRange:hover
+  flex 1!important
+  opacity 1
+// General plyr size and colour
+.plyr__control:hover
+  background rgba(225, 225, 225, 0.2)!important
+.plyr__controls
+  background-color rgba(34, 41, 50, 0.7)!important
+.plyr__control--overlaid
+  background-color rgba(34, 41, 50, 0.7)!important
+  border-style solid!important
+  border-width 2px!important
+.plyr--full-ui input[type=range]
+  // Chrome
+  &::-webkit-slider-runnable-track
+    color rgb(225, 225, 225)
+  // Firefox
+  &::-moz-range-progress
+    color rgb(225, 225, 225)
+.plyr--video .plyr__controls__item svg
+  height 1em
+  width 1em
+.plyr__time
+  font-size 0.8em
+  margin-right 10px
+  margin-left 10px
+
+// bug fix for the issue that vimeo videos are not clickable in plyr v 3.6.4
+.plyr--vimeo .plyr__poster[hidden]
+  display block !important
+  opacity 0
+
+// Plyr fitting container
+.sd-video > div
+  height 100%!important
+  width 100%!important
+// For youtube's video
+.sd-video > div > div.plyr__video-wrapper.plyr__video-embed
+  padding-bottom 0%!important
+  height 100%!important
+// For html5's video -- video.js support
+.sd-video > div > div.plyr__video-wrapper
+  height 100%!important
+.sd-video > div > div.plyr__video-wrapper > div
+  height 100%!important
+  width 100%!important
+.sd-video > div > div.plyr__video-wrapper > div > video
+  height 100%!important
+// Older html5 css, unsure if still needed, but here just in case... Uncomment if needed
+// .sd-video > div > div.plyr__video-wrapper > video
+//   height 100%!important
+
+// For vimeo's video
+.sd-video > div > div.plyr__video-wrapper.plyr__video-embed > div.plyr__video-embed__container
+  padding-bottom 0%!important
+  height 100%!important
+  transform translateY(0%)!important
+
+// For tv/much larger screens | *Re-enable when needed
+@media (min-width: 2560px)
+  // Popup Proxy Menu
+  .sd-proxyMenu > div >.q-card
+    padding 2rem 2rem 2rem 2rem
+  .sd-proxyMenu > div >.q-card > .q-list *
+    font-size 5rem
+    div.q-item__section.column.q-item__section--avatar > div > div
+      height 5rem
+      width 5rem
+  // Detail List
+  .sdThingDetails
+    padding 2.3em!important
+    div
+      padding-bottom .4rem
+    p
+      font-size 1.2vmax
+      margin 10px 0
+    .text-body1
+      font-size 3rem
+      line-height 3rem
+    .sdClose
+      font-size 2.5em!important
+    .carousel
+      height 30em!important
+    .q-btn
+      margin-top 20px
+    .q-btn--rounded
+      border-radius 52px
+    .col-11
+      margin-left auto
+      margin-right auto
+    .thin-paragraph
+      font-size 2rem
+    .q-btn--rectangle .q-btn__wrapper
+      padding 14px 26px
+      font-size 2em
+    .text-h4
+      font-size 3.125rem
+      line-height 5.5rem
+    .text-h5
+      font-size 2.5rem
+      line-height 2.5rem
+    .text-h6
+      font-size 2.2rem
+      line-height 2.5rem
+    .text-subtitle1
+      font-size 2.5rem
+      line-height 2.5rem
+    .text-caption
+      font-size 1.75rem
+    .getItFor
+      font-size 2.3rem
+    .q-field__control
+      height 7rem!important
+      font-size 2.7rem
+    .q-select__dropdown-icon
+      font-size 4rem
+    .q-field__label
+      height 4.6rem
+      font-size 1.8rem
+      transform translateY(0%)
+    div.q-field__append.q-field__marginal.row.no-wrap.items-center.q-anchor--skip
+      transform translateY(50%)
+  // Plyr
+  // overlay play button //
+  .plyr--full-ui .plyr__control--overlaid
+    padding 3em
+  .plyr--full-ui .plyr__control--overlaid svg
+      height 3em
+      width 3em
+  // controls //
+  .plyr__controls
+    .plyr__controls__item svg
+      height 3em
+      width 3em
+    .plyr__controls__item
+      padding 2.5em
+    .plyr__controls .plyr__progress__container
+      margin-left 2.5em
+    .plyr__time
+      font-size 2.5em
+    .plyr__volume
+      max-width 15em
+      margin-right 3em!important
+    .plyr__progress__buffer
+      height 1.3em!important
+      margin-top -9px
+    // inputs volume & scrub bar //
+    .plyr__volume input[type='range']
+      // Chrome //
+      &::-webkit-slider-runnable-track
+        width 100%
+        height 1.3em
+      &::-webkit-slider-thumb
+        height 2.5em!important
+        width 2.5em!important
+        margin-top -9px!important
+      // Firefox //
+      &::-moz-range-track
+        width 100%
+        height 1.3em
+      &::-moz-range-thumb
+        height 2.5em!important
+        width 2.5em!important
+        margin-top -9px!important
+      &::-moz-range-progress
+        height 1.3em
+    .plyr__progress input[type='range']
+      // Chrome // 
+      &::-webkit-slider-runnable-track
+        width 100%
+        height 1.3em
+      &::-webkit-slider-thumb
+        height 2.5em!important
+        width 2.5em!important
+        margin-top -9px!important
+      // Firefox //
+      &::-moz-range-track
+        width 100%
+        height 1.3em
+      &::-moz-range-thumb
+        height 2.5em!important
+        width 2.5em!important
+        margin-top -9px!important
+      &::-moz-range-progress
+        height 1.3em
+  
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.cast-list-grid
+  display grid
+  grid-template-columns repeat(auto-fit, minmax(16rem, 1fr))
+  grid-auto-rows 12rem
+  grid-gap 1em
+  grid-auto-flow dense
+  overflow-x hidden !important
+
+.show-actors-text
+  display none
+.cast-viewer-visibility
+  display none
+
+@media all and (max-width: 640px)
+  .plyr__controls
+    padding-top 5px!important
+  .cast-list-grid
+    display flex
+    flex-direction column
+    margin 0.5em
+  .cast-list-grid > div
+    height auto
+    margin-bottom 20px
+    transform-origin unset !important
+  .show-actors-text
+    display block
+  .cast-viewer-visibility
+    display block
+  .card-selection-list
+      flex 5 1
+  
+.card-selection-list
+  //display: grid;
+  grid-template-columns repeat(auto-fit,minmax(22em,1fr))
+  grid-auto-rows -webkit-min-content
+  grid-auto-rows min-content
+  height 100%
+  width 100%
+  -webkit-overflow-scrolling touch
+  flex 2 1
+@media (min-width: 480px)
+  .plyr--video .plyr__controls
+    padding: 5px 10px 5px !important
+
+// Animations
+.sdTransitions > *
+  transition: all 1s ease-in-out
+.sdListTransitions > *
+  transition: all 350ms ease
+
+.sdEase
+  transition transform 2s
+.sdEase-enter,
+.sdEase-leave-to
+  opacity 0
+  transform translateX(-3em) scale(.9)
+.sdEase-leave-active
+  position absolute
+  transform translate(-3em,-3em) scale(.9)
+.sdSlideZoom
+  transition all 2s
+.sdSlideZoom-enter,
+.sdSlideZoom-leave-to
+  opacity 0
+  transform translateX(3em) scale(.95)
+.sdSlideZoom-leave-active
+  opacity 0
+  transform translate(3em) scale(.95)
+
+  // Zendesk button launcher
+#launcher
+  display none!important
+  // custom styling for scrollbar
+.scroll
+ scrollbar-color: rgba(128,128,128,0.5) transparent
+ scrollbar-width: thin
+.scroll::-webkit-scrollbar-thumb
+ border-radius: 20px
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5)

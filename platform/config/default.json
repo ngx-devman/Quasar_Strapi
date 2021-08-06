@@ -1,0 +1,62 @@
+{
+  "myCustomConfiguration": "This configuration is accessible through strapi.config.myCustomConfiguration",
+  "cache": {
+    "clientConfig": {
+      "ttl": 300
+    }
+  },
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "ax5eOmKPD8n32wVB8J8yhTbe2P8=",
+    "authStrategies": ["jwt", "local"],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    },
+    "oauth": {
+      "redirect": "/",
+      "auth0": {
+        "key": "<auth0 oauth key>",
+        "secret": "<auth0 oauth secret>",
+        "subdomain": "<auth0 subdomain>"
+      },
+      "google": {
+        "key": "<google oauth key>",
+        "secret": "<google oauth secret>",
+        "scope": ["email", "profile", "openid"]
+      },
+      "facebook": {
+        "key": "<facebook oauth key>",
+        "secret": "<facebook oauth secret>"
+      },
+      "twitter": {
+        "key": "<twitter oauth key>",
+        "secret": "<twitter oauth secret>"
+      },
+      "github": {
+        "key": "<github oauth key>",
+        "secret": "<github oauth secret>"
+      }
+    }
+  },
+  "stripe": {
+    "secretKey": "sk_live_EqWJDIy6UXr5UUq6bZWcR78z00PQ7KQYml",
+    "comment": "The above key is for Verte Luxe"
+  },
+  "taxjarAPIKey": "f002bdf745a4a92dbe49f2c48b601240",
+  "consumerKey": "ck_15486628f0e82dc469bd33e15e8be4f3933d4196",
+  "consumerSecret": "cs_00b5e10b07aaf63430c83ca20bbed188d54aa030",
+  "woocommerceURL": "https://woocommerce.source.tools/index.php/",
+  "authRedirectURL": "http://localhost:8080/#/",
+  "taxratesAPIKey": "j5tj3GhkQZksqkTmHie7c6yFTuQcd07KM71Fze"
+}

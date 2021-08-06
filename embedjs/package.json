@@ -1,0 +1,15 @@
+{
+  "name": "embed.js",
+  "version": "1.0.0",
+  "description": "embed.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d lib"
+  },
+  "keywords": [
+    "embed",
+    "embed.js"
+  ],
+  "author": "sourcedigital.net",
+  "license": "ISC"
+}

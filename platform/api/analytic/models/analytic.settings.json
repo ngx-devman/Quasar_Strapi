@@ -1,0 +1,131 @@
+{
+  "kind": "collectionType",
+  "connection": "analytics",
+  "collectionName": "analytics",
+  "info": {
+    "name": "Analytic",
+    "description": "Internal Analytics"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "__v",
+      "created_at",
+      "updated_at",
+      "published_at",
+      "_id"
+    ]
+  },
+  "attributes": {
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_term": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    },
+    "query_string": {
+      "type": "json"
+    },
+    "event": {
+      "type": "json"
+    },
+    "campaigns": {
+      "type": "json"
+    },
+    "e": {
+      "type": "biginteger"
+    },
+    "time": {
+      "type": "string"
+    },
+    "dist": {
+      "type": "biginteger"
+    },
+    "distName": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "string"
+    },
+    "metaName": {
+      "type": "string"
+    },
+    "sess": {
+      "type": "string"
+    },
+    "env": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "json"
+    },
+    "agent": {
+      "type": "json"
+    },
+    "mobile": {
+      "type": "boolean"
+    },
+    "TLD": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "biginteger"
+    },
+    "ip": {
+      "type": "string"
+    },
+    "continent": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "isAnonymousVpn": {
+      "type": "boolean"
+    },
+    "location": {
+      "type": "text"
+    },
+    "flag": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "boolean"
+    },
+    "flow_from": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/shortcodes/:id",
+      "handler": "shortcode.findOne",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

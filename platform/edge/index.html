@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experience Engine Test</title>
+    <meta charset="utf-8">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <script src="https://cdn.sourcesync.io/experience/1.0a/index.js" defer="" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.sourcesync.io/experience/1.0a/index.css">
+</head>
+<body>
+test
+<div style="width:90%;margin-left:auto;margin-right:auto">
+<div data-sd-experience="1"></div>
+<div data-sd-experience="2"></div>
+<div data-sd-experience="3"></div>
+<div data-sd-experience="4"></div>
+
+<div style="width:500px;height:300px">
+<div data-sd-experience="5"></div>
+</div>
+
+<div style="height:200px;width:200px">
+<div data-sd-experience="5"></div>
+</div>
+</div>
+<script type="text/javascript">
+    // This would be the full build of the experience engine (this would actually come from a loader script)...
+var experienceEngine = {
+  data: function () {
+    return {
+      version: this.$q.version,
+      experience: 0
+    }
+  },
+  template: `<div class="q-ma-md" style="width:100%;height:100%">
+    <q-btn color="primary" @click="notify" style="width:100%;height:100%;">Quasar: {{ version + ' Experience: ' + experience }}</q-btn>
+  </div>`,
+  methods: {
+    notify: function () {
+      this.$q.notify('I was fired from experience ' + this.experience)
+    }
+  }
+};
+
+// This would be the loader, it would include a fetch to the UMD script above, and then build a Vue app for each instance called (the only part we need to add is the fetch, left out of this example for simplicity)...
+
+// Select all elements in the DOM we need to inject into...
+var elements = document.querySelectorAll('[data-sd-experience]');
+// Mount and start the experience engine into each element (this method also works for the 1% still using IE11)...
+[].forEach.call(elements, function(el) {
+  var created = function () { this.experience = el.getAttribute('data-sd-experience')}
+  new Vue(Object.assign({el, created}, experienceEngine))
+});
+
+  </script>
+</html>

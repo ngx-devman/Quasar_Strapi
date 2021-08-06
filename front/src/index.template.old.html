@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= htmlWebpackPlugin.options.productName %></title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="<%= htmlWebpackPlugin.options.productDescription %>">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (htmlWebpackPlugin.options.ctx.mode.cordova || htmlWebpackPlugin.options.ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="192x192" href="https://cdn.sourcesync.io/experience/favicon/android-icon-192x192.png">
+    <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="32x32" href="https://cdn.sourcesync.io/experience/favicon/favicon-32x32.png">
+    <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="96x96" href="https://cdn.sourcesync.io/experience/favicon/favicon-96x96.png">
+    <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="16x16" href="https://cdn.sourcesync.io/experience/favicon/favicon-16x16.png">
+    <!-- <script src="https://js.stripe.com/v3/"></script> -->
+  </head>
+  <script>
+    // Browser check...
+    var $buoop = {required:{e:-2,f:-3,o:-3,s:12,c:-3},insecure:false,unsupported:false,api:2020.02}; 
+    function $buo_f(){ 
+     var e = document.createElement("script"); 
+     e.src = "//browser-update.org/update.min.js"; 
+     document.body.appendChild(e);
+    };
+    try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+    catch(e){window.attachEvent("onload", $buo_f)}
+    
+    // Defining SourceDigital...
+    SourceDigital = <%= JSON.stringify(htmlWebpackPlugin.options.SourceDigital) %>;
+
+    // Defining SourceDigital.experience...
+    (function () {
+      function getParam(name) {
+        var url = window.location.href
+        name = name.replace(/[\[\]]/g, '\\$&')
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url)
+        if (!results) return null
+        if (!results[2]) return ''
+        return decodeURIComponent(results[2].replace(/\+/g, ' '))
+      };
+      var obj = {}
+      // Detect iframes...
+      obj.iframe = window.location !== window.parent.location
+      // Detect settings...
+      obj.embedded = getParam('embed')
+      obj.embedId = getParam('embedId')
+      obj.debug = getParam('debug')
+      obj.mode = getParam('mode') || 'pwa'
+      // Detect the experience, location and path...
+      var path = (window.location.hash === '' ? window.location.pathname : window.location.hash).split('/')
+      if (path[1]) {
+        var n = path[1].indexOf('&');
+        obj.id = path[1].substring(0, n != -1 ? n : path[1].length);
+
+      } else {
+        obj.id = getParam('id')
+      }
+      obj.location = path[2] || ''
+      SourceDigital.experience = obj
+    })()
+  </script>
+  <script>
+  </script>
+
+  <body>
+    <!-- DO NOT touch the following DIV -->
+    <div id="q-app"></div>
+  </body>
+</html>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=" + SourceDigital.build.ga></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', SourceDigital.build.ga);
+</script>
+

@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dynamic_contents",
+  "info": {
+    "name": "dynamic-content"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "settings": {
+      "type": "json"
+    },
+    "hidden": {
+      "type": "json"
+    }
+  }
+}

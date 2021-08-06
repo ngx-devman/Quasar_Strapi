@@ -1,0 +1,9 @@
+FROM node:lts
+RUN mkdir /app
+ADD front /app/front
+ADD platform /app/platform
+WORKDIR /app/platform/
+RUN echo "8kHmDagLEh65B9Kq" | yarn install
+RUN NODE_ENV=prime yarn build
+EXPOSE 1337
+CMD SOURCE_BOOTSTRAP=true NODE_ENV=prime yarn start

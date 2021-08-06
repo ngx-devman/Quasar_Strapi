@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "activations",
+  "info": {
+    "name": "Activations",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "settings": {
+      "type": "json"
+    },
+    "data": {
+      "type": "json"
+    },
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "template": {
+      "type": "json"
+    },
+    "version": {
+      "type": "integer",
+      "default": 0
+    },
+    "uuid": {
+      "required": true,
+      "unique": true,
+      "type": "string",
+      "default": "This will be created for you"
+    },
+    "views": {
+      "type": "biginteger"
+    },
+    "interactions": {
+      "type": "biginteger"
+    },
+    "conversions": {
+      "type": "biginteger"
+    },
+    "name": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "previewImage": {
+      "model": "user-media"
+    },
+    "distributions": {
+      "type": "biginteger"
+    },
+    "history": {
+      "type": "json"
+    },
+    "published": {
+      "type": "date"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "inactive",
+        "active",
+        "live",
+        "test",
+        "debug",
+        "special"
+      ],
+      "type": "enumeration"
+    },
+    "clientId": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "parent": {
+      "model": "user-media-folder"
+    }
+  }
+}

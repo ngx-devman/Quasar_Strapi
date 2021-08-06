@@ -1,0 +1,36 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/orders/fetch",
+      "handler": "Orders.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/orders/",
+      "handler": "Orders.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/orders/create/",
+      "handler": "Orders.shopifyCreateOrder",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/orders/",
+      "handler": "Orders.update",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

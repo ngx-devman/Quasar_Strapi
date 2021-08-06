@@ -1,0 +1,68 @@
+{
+  "routes": [
+    {
+      "method": "PUT",
+      "path": "/currentuser",
+      "handler": "CurrentUser.update",
+      "config": {
+        "policies": ["plugins::users-permissions.filterUserFields"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/currentuser/photo",
+      "handler": "CurrentUser.updatePhoto",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/currentuser",
+      "handler": "CurrentUser.get",
+      "config": {
+        "policies": ["plugins::users-permissions.filterUserFields"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/currentuser/media",
+      "handler": "CurrentUser.getMediaFiles",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/currentuser/media/count",
+      "handler": "CurrentUser.countMediaFiles",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/currentuser/media/folders",
+      "handler": "CurrentUser.getMediaFolders",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/currentuser/media/folders/:id",
+      "handler": "CurrentUser.getMediaFolder",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/currentuser/password",
+      "handler": "CurrentUser.changePass",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

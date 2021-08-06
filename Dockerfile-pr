@@ -1,0 +1,6 @@
+FROM node:12
+COPY . /apps/
+WORKDIR /apps/platform/
+RUN echo "8kHmDagLEh65B9Kq" | yarn install
+RUN NODE_ENV=development yarn build
+ENTRYPOINT NODE_ENV=development yarn run dev

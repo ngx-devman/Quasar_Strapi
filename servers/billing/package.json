@@ -1,0 +1,48 @@
+{
+  "name": "billing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tom --command=notification.email --templateId=welcome --to=nick@sourcedigital.net --subject='hello world' --from=test@test.com --body=yo",
+    "start": "tom --port 3030"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tom-microservice": "^2.9.24"
+  },
+  "tom": {
+    "email" : {
+      "template": {
+        "welcome": "Welcome!!"
+      },
+      "transporter": {
+        "auth": {
+          "user": "nick@sourcedigital.net",
+          "pass": "Skye5sks1!"
+        }
+      }
+    },
+    "payment": {
+      "stripe_key": "",
+      "stripe_webhook_secret": ""
+    },
+    "twitter" :{
+      "consumer_key": "",
+      "consumer_secret": "",
+      "access_token": ""
+    },
+    "telegram": {
+      "token": ""
+    },
+    "company": {
+      "name": "Source Digital",
+      "site": "sourcedigital.net",
+      "link": "https://sourcedigital.net",
+      "logo": "",
+      "email": "dev@sourcedigital.net",
+      "copyright": "Copyright © 2020 SourceDigital, LLC. All rights reserved."
+    }
+  }
+}

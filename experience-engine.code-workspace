@@ -1,0 +1,19 @@
+{
+  "folders": [
+      {
+          "path": "front"
+      },
+      {
+          "path": "platform"
+      },
+      {
+          "name": "root",
+          "path": "."
+      },
+      {
+          "name": "cross-frame",
+          "path": "demo/cross-frame"
+      }
+  ],
+  "settings": {}
+}

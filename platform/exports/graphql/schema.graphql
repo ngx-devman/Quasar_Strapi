@@ -1,0 +1,4058 @@
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+enum ENUM_ACTIVATIONS_STATUS {
+  draft
+  inactive
+  active
+  live
+  test
+  debug
+  special
+}
+
+type Activations {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  settings: JSON
+  data: JSON
+  owner: UsersPermissionsUser
+  template: JSON
+  version: Int
+  uuid: String!
+  views: Long
+  interactions: Long
+  conversions: Long
+  name: String
+  image: UploadFile
+  previewImage: UserMedia
+  distributions: Long
+  history: JSON
+  published: Date
+  status: ENUM_ACTIVATIONS_STATUS
+  clientId: String
+  slug: String
+  parent: UserMediaFolder
+}
+
+type ActivationsConnection {
+  values: [Activations]
+  groupBy: ActivationsGroupBy
+  aggregate: ActivationsAggregator
+}
+
+type ActivationsAggregator {
+  count: Int
+  totalCount: Int
+  sum: ActivationsAggregatorSum
+  avg: ActivationsAggregatorAvg
+  min: ActivationsAggregatorMin
+  max: ActivationsAggregatorMax
+}
+
+type ActivationsAggregatorSum {
+  version: Float
+}
+
+type ActivationsAggregatorAvg {
+  version: Float
+}
+
+type ActivationsAggregatorMin {
+  version: Float
+}
+
+type ActivationsAggregatorMax {
+  version: Float
+}
+
+type ActivationsGroupBy {
+  id: [ActivationsConnectionId]
+  created_at: [ActivationsConnectionCreated_at]
+  updated_at: [ActivationsConnectionUpdated_at]
+  settings: [ActivationsConnectionSettings]
+  data: [ActivationsConnectionData]
+  owner: [ActivationsConnectionOwner]
+  template: [ActivationsConnectionTemplate]
+  version: [ActivationsConnectionVersion]
+  uuid: [ActivationsConnectionUuid]
+  views: [ActivationsConnectionViews]
+  interactions: [ActivationsConnectionInteractions]
+  conversions: [ActivationsConnectionConversions]
+  name: [ActivationsConnectionName]
+  image: [ActivationsConnectionImage]
+  previewImage: [ActivationsConnectionPreviewImage]
+  distributions: [ActivationsConnectionDistributions]
+  history: [ActivationsConnectionHistory]
+  published: [ActivationsConnectionPublished]
+  status: [ActivationsConnectionStatus]
+  clientId: [ActivationsConnectionClientId]
+  slug: [ActivationsConnectionSlug]
+  parent: [ActivationsConnectionParent]
+}
+
+type ActivationsConnectionId {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionCreated_at {
+  key: DateTime
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionUpdated_at {
+  key: DateTime
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionSettings {
+  key: JSON
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionData {
+  key: JSON
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionOwner {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionTemplate {
+  key: JSON
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionVersion {
+  key: Int
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionUuid {
+  key: String
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionViews {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionInteractions {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionConversions {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionName {
+  key: String
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionImage {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionPreviewImage {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionDistributions {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionHistory {
+  key: JSON
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionPublished {
+  key: ID
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionStatus {
+  key: String
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionClientId {
+  key: String
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionSlug {
+  key: String
+  connection: ActivationsConnection
+}
+
+type ActivationsConnectionParent {
+  key: ID
+  connection: ActivationsConnection
+}
+
+input ActivationInput {
+  settings: JSON
+  data: JSON
+  owner: ID
+  template: JSON
+  version: Int
+  uuid: String
+  views: Long
+  interactions: Long
+  conversions: Long
+  name: String
+  image: ID
+  previewImage: ID
+  distributions: Long
+  history: JSON
+  published: Date
+  status: ENUM_ACTIVATIONS_STATUS
+  clientId: String
+  slug: String
+  parent: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editActivationInput {
+  settings: JSON
+  data: JSON
+  owner: ID
+  template: JSON
+  version: Int
+  uuid: String
+  views: Long
+  interactions: Long
+  conversions: Long
+  name: String
+  image: ID
+  previewImage: ID
+  distributions: Long
+  history: JSON
+  published: Date
+  status: ENUM_ACTIVATIONS_STATUS
+  clientId: String
+  slug: String
+  parent: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createActivationInput {
+  data: ActivationInput
+}
+
+type createActivationPayload {
+  activation: Activations
+}
+
+input updateActivationInput {
+  where: InputID
+  data: editActivationInput
+}
+
+type updateActivationPayload {
+  activation: Activations
+}
+
+input deleteActivationInput {
+  where: InputID
+}
+
+type deleteActivationPayload {
+  activation: Activations
+}
+
+"""Internal Analytics"""
+type Analytic {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  utm_source: String
+  utm_medium: String
+  utm_campaign: String
+  utm_term: String
+  utm_content: String
+  query_string: JSON
+  event: JSON
+  campaigns: JSON
+  e: Long
+  time: String
+  dist: Long
+  distName: String
+  meta: String
+  metaName: String
+  sess: String
+  env: String
+  payload: JSON
+  agent: JSON
+  mobile: Boolean
+  TLD: String
+  URL: String
+  type: String
+  organization: Long
+  ip: String
+  continent: String
+  country: String
+  city: String
+  postalCode: String
+  latitude: String
+  longitude: String
+  timezone: String
+  isAnonymousVpn: Boolean
+  location: String
+  flag: String
+  destination: Boolean
+  flow_from: String
+}
+
+type AnalyticConnection {
+  values: [Analytic]
+  groupBy: AnalyticGroupBy
+  aggregate: AnalyticAggregator
+}
+
+type AnalyticAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type AnalyticGroupBy {
+  id: [AnalyticConnectionId]
+  created_at: [AnalyticConnectionCreated_at]
+  updated_at: [AnalyticConnectionUpdated_at]
+  utm_source: [AnalyticConnectionUtm_source]
+  utm_medium: [AnalyticConnectionUtm_medium]
+  utm_campaign: [AnalyticConnectionUtm_campaign]
+  utm_term: [AnalyticConnectionUtm_term]
+  utm_content: [AnalyticConnectionUtm_content]
+  query_string: [AnalyticConnectionQuery_string]
+  event: [AnalyticConnectionEvent]
+  campaigns: [AnalyticConnectionCampaigns]
+  e: [AnalyticConnectionE]
+  time: [AnalyticConnectionTime]
+  dist: [AnalyticConnectionDist]
+  distName: [AnalyticConnectionDistName]
+  meta: [AnalyticConnectionMeta]
+  metaName: [AnalyticConnectionMetaName]
+  sess: [AnalyticConnectionSess]
+  env: [AnalyticConnectionEnv]
+  payload: [AnalyticConnectionPayload]
+  agent: [AnalyticConnectionAgent]
+  mobile: [AnalyticConnectionMobile]
+  TLD: [AnalyticConnectionTLD]
+  URL: [AnalyticConnectionURL]
+  type: [AnalyticConnectionType]
+  organization: [AnalyticConnectionOrganization]
+  ip: [AnalyticConnectionIp]
+  continent: [AnalyticConnectionContinent]
+  country: [AnalyticConnectionCountry]
+  city: [AnalyticConnectionCity]
+  postalCode: [AnalyticConnectionPostalCode]
+  latitude: [AnalyticConnectionLatitude]
+  longitude: [AnalyticConnectionLongitude]
+  timezone: [AnalyticConnectionTimezone]
+  isAnonymousVpn: [AnalyticConnectionIsAnonymousVpn]
+  location: [AnalyticConnectionLocation]
+  flag: [AnalyticConnectionFlag]
+  destination: [AnalyticConnectionDestination]
+  flow_from: [AnalyticConnectionFlow_from]
+}
+
+type AnalyticConnectionId {
+  key: ID
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionCreated_at {
+  key: DateTime
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionUpdated_at {
+  key: DateTime
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionUtm_source {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionUtm_medium {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionUtm_campaign {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionUtm_term {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionUtm_content {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionQuery_string {
+  key: JSON
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionEvent {
+  key: JSON
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionCampaigns {
+  key: JSON
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionE {
+  key: ID
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionTime {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionDist {
+  key: ID
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionDistName {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionMeta {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionMetaName {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionSess {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionEnv {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionPayload {
+  key: JSON
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionAgent {
+  key: JSON
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionMobile {
+  key: Boolean
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionTLD {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionURL {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionType {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionOrganization {
+  key: ID
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionIp {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionContinent {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionCountry {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionCity {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionPostalCode {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionLatitude {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionLongitude {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionTimezone {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionIsAnonymousVpn {
+  key: Boolean
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionLocation {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionFlag {
+  key: String
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionDestination {
+  key: Boolean
+  connection: AnalyticConnection
+}
+
+type AnalyticConnectionFlow_from {
+  key: String
+  connection: AnalyticConnection
+}
+
+input AnalyticInput {
+  utm_source: String
+  utm_medium: String
+  utm_campaign: String
+  utm_term: String
+  utm_content: String
+  query_string: JSON
+  event: JSON
+  campaigns: JSON
+  e: Long
+  time: String
+  dist: Long
+  distName: String
+  meta: String
+  metaName: String
+  sess: String
+  env: String
+  payload: JSON
+  agent: JSON
+  mobile: Boolean
+  TLD: String
+  URL: String
+  type: String
+  organization: Long
+  ip: String
+  continent: String
+  country: String
+  city: String
+  postalCode: String
+  latitude: String
+  longitude: String
+  timezone: String
+  isAnonymousVpn: Boolean
+  location: String
+  flag: String
+  destination: Boolean
+  flow_from: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editAnalyticInput {
+  utm_source: String
+  utm_medium: String
+  utm_campaign: String
+  utm_term: String
+  utm_content: String
+  query_string: JSON
+  event: JSON
+  campaigns: JSON
+  e: Long
+  time: String
+  dist: Long
+  distName: String
+  meta: String
+  metaName: String
+  sess: String
+  env: String
+  payload: JSON
+  agent: JSON
+  mobile: Boolean
+  TLD: String
+  URL: String
+  type: String
+  organization: Long
+  ip: String
+  continent: String
+  country: String
+  city: String
+  postalCode: String
+  latitude: String
+  longitude: String
+  timezone: String
+  isAnonymousVpn: Boolean
+  location: String
+  flag: String
+  destination: Boolean
+  flow_from: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createAnalyticInput {
+  data: AnalyticInput
+}
+
+type createAnalyticPayload {
+  analytic: Analytic
+}
+
+input updateAnalyticInput {
+  where: InputID
+  data: editAnalyticInput
+}
+
+type updateAnalyticPayload {
+  analytic: Analytic
+}
+
+input deleteAnalyticInput {
+  where: InputID
+}
+
+type deleteAnalyticPayload {
+  analytic: Analytic
+}
+
+enum ENUM_APPS_TYPE {
+  Application
+  Activation
+  ActivationPreview
+  Feed
+  storefront
+  template
+}
+
+enum ENUM_APPS_CATEGORY {
+  AI
+  Analytics
+  Content
+  eCommerce
+  Data
+  Payments
+}
+
+type Apps {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  settings: JSON
+  data: JSON
+  publisher: Organizations
+  name: String
+  type: ENUM_APPS_TYPE
+  category: ENUM_APPS_CATEGORY
+  rating: Float
+  version: String
+  integrations: Long
+  downloads: Long
+  slug: String!
+  privacy: String
+  terms: String
+  description: String
+  details: String
+  support: String
+  billing: JSON
+  user: UsersPermissionsUser
+  provider: String
+  repo: String
+}
+
+type AppsConnection {
+  values: [Apps]
+  groupBy: AppsGroupBy
+  aggregate: AppsAggregator
+}
+
+type AppsAggregator {
+  count: Int
+  totalCount: Int
+  sum: AppsAggregatorSum
+  avg: AppsAggregatorAvg
+  min: AppsAggregatorMin
+  max: AppsAggregatorMax
+}
+
+type AppsAggregatorSum {
+  rating: Float
+}
+
+type AppsAggregatorAvg {
+  rating: Float
+}
+
+type AppsAggregatorMin {
+  rating: Float
+}
+
+type AppsAggregatorMax {
+  rating: Float
+}
+
+type AppsGroupBy {
+  id: [AppsConnectionId]
+  created_at: [AppsConnectionCreated_at]
+  updated_at: [AppsConnectionUpdated_at]
+  settings: [AppsConnectionSettings]
+  data: [AppsConnectionData]
+  publisher: [AppsConnectionPublisher]
+  name: [AppsConnectionName]
+  type: [AppsConnectionType]
+  category: [AppsConnectionCategory]
+  rating: [AppsConnectionRating]
+  version: [AppsConnectionVersion]
+  integrations: [AppsConnectionIntegrations]
+  downloads: [AppsConnectionDownloads]
+  slug: [AppsConnectionSlug]
+  privacy: [AppsConnectionPrivacy]
+  terms: [AppsConnectionTerms]
+  description: [AppsConnectionDescription]
+  details: [AppsConnectionDetails]
+  support: [AppsConnectionSupport]
+  billing: [AppsConnectionBilling]
+  user: [AppsConnectionUser]
+  provider: [AppsConnectionProvider]
+  repo: [AppsConnectionRepo]
+}
+
+type AppsConnectionId {
+  key: ID
+  connection: AppsConnection
+}
+
+type AppsConnectionCreated_at {
+  key: DateTime
+  connection: AppsConnection
+}
+
+type AppsConnectionUpdated_at {
+  key: DateTime
+  connection: AppsConnection
+}
+
+type AppsConnectionSettings {
+  key: JSON
+  connection: AppsConnection
+}
+
+type AppsConnectionData {
+  key: JSON
+  connection: AppsConnection
+}
+
+type AppsConnectionPublisher {
+  key: ID
+  connection: AppsConnection
+}
+
+type AppsConnectionName {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionType {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionCategory {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionRating {
+  key: Float
+  connection: AppsConnection
+}
+
+type AppsConnectionVersion {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionIntegrations {
+  key: ID
+  connection: AppsConnection
+}
+
+type AppsConnectionDownloads {
+  key: ID
+  connection: AppsConnection
+}
+
+type AppsConnectionSlug {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionPrivacy {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionTerms {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionDescription {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionDetails {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionSupport {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionBilling {
+  key: JSON
+  connection: AppsConnection
+}
+
+type AppsConnectionUser {
+  key: ID
+  connection: AppsConnection
+}
+
+type AppsConnectionProvider {
+  key: String
+  connection: AppsConnection
+}
+
+type AppsConnectionRepo {
+  key: String
+  connection: AppsConnection
+}
+
+input AppInput {
+  settings: JSON
+  data: JSON
+  publisher: ID
+  name: String
+  type: ENUM_APPS_TYPE
+  category: ENUM_APPS_CATEGORY
+  rating: Float
+  version: String
+  integrations: Long
+  downloads: Long
+  slug: String!
+  privacy: String
+  terms: String
+  description: String
+  details: String
+  support: String
+  billing: JSON
+  user: ID
+  provider: String
+  repo: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editAppInput {
+  settings: JSON
+  data: JSON
+  publisher: ID
+  name: String
+  type: ENUM_APPS_TYPE
+  category: ENUM_APPS_CATEGORY
+  rating: Float
+  version: String
+  integrations: Long
+  downloads: Long
+  slug: String
+  privacy: String
+  terms: String
+  description: String
+  details: String
+  support: String
+  billing: JSON
+  user: ID
+  provider: String
+  repo: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createAppInput {
+  data: AppInput
+}
+
+type createAppPayload {
+  app: Apps
+}
+
+input updateAppInput {
+  where: InputID
+  data: editAppInput
+}
+
+type updateAppPayload {
+  app: Apps
+}
+
+input deleteAppInput {
+  where: InputID
+}
+
+type deleteAppPayload {
+  app: Apps
+}
+
+type Backup {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  resource: String
+  resourceID: Long!
+  data: JSON
+  type: String
+  user: String
+}
+
+type BackupConnection {
+  values: [Backup]
+  groupBy: BackupGroupBy
+  aggregate: BackupAggregator
+}
+
+type BackupAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type BackupGroupBy {
+  id: [BackupConnectionId]
+  created_at: [BackupConnectionCreated_at]
+  updated_at: [BackupConnectionUpdated_at]
+  resource: [BackupConnectionResource]
+  resourceID: [BackupConnectionResourceID]
+  data: [BackupConnectionData]
+  type: [BackupConnectionType]
+  user: [BackupConnectionUser]
+}
+
+type BackupConnectionId {
+  key: ID
+  connection: BackupConnection
+}
+
+type BackupConnectionCreated_at {
+  key: DateTime
+  connection: BackupConnection
+}
+
+type BackupConnectionUpdated_at {
+  key: DateTime
+  connection: BackupConnection
+}
+
+type BackupConnectionResource {
+  key: String
+  connection: BackupConnection
+}
+
+type BackupConnectionResourceID {
+  key: ID
+  connection: BackupConnection
+}
+
+type BackupConnectionData {
+  key: JSON
+  connection: BackupConnection
+}
+
+type BackupConnectionType {
+  key: String
+  connection: BackupConnection
+}
+
+type BackupConnectionUser {
+  key: String
+  connection: BackupConnection
+}
+
+input BackupInput {
+  resource: String
+  resourceID: Long!
+  data: JSON
+  type: String
+  user: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editBackupInput {
+  resource: String
+  resourceID: Long
+  data: JSON
+  type: String
+  user: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createBackupInput {
+  data: BackupInput
+}
+
+type createBackupPayload {
+  backup: Backup
+}
+
+input updateBackupInput {
+  where: InputID
+  data: editBackupInput
+}
+
+type updateBackupPayload {
+  backup: Backup
+}
+
+input deleteBackupInput {
+  where: InputID
+}
+
+type deleteBackupPayload {
+  backup: Backup
+}
+
+type Campaign {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  active: Boolean
+  dateStart: DateTime
+  dateEnd: DateTime
+  targetUrlDomains: JSON
+  targetKeywords: JSON
+  priority: Int
+  remainingPreviews: Long
+  remainingViews: Long
+  remainingActions: Long
+  criteria: JSON
+  targetDistributions(sort: String, limit: Int, start: Int, where: JSON): [Distribution]
+  activations(sort: String, limit: Int, start: Int, where: JSON): [Activations]
+}
+
+type CampaignConnection {
+  values: [Campaign]
+  groupBy: CampaignGroupBy
+  aggregate: CampaignAggregator
+}
+
+type CampaignAggregator {
+  count: Int
+  totalCount: Int
+  sum: CampaignAggregatorSum
+  avg: CampaignAggregatorAvg
+  min: CampaignAggregatorMin
+  max: CampaignAggregatorMax
+}
+
+type CampaignAggregatorSum {
+  priority: Float
+}
+
+type CampaignAggregatorAvg {
+  priority: Float
+}
+
+type CampaignAggregatorMin {
+  priority: Float
+}
+
+type CampaignAggregatorMax {
+  priority: Float
+}
+
+type CampaignGroupBy {
+  id: [CampaignConnectionId]
+  created_at: [CampaignConnectionCreated_at]
+  updated_at: [CampaignConnectionUpdated_at]
+  name: [CampaignConnectionName]
+  active: [CampaignConnectionActive]
+  dateStart: [CampaignConnectionDateStart]
+  dateEnd: [CampaignConnectionDateEnd]
+  targetUrlDomains: [CampaignConnectionTargetUrlDomains]
+  targetKeywords: [CampaignConnectionTargetKeywords]
+  priority: [CampaignConnectionPriority]
+  remainingPreviews: [CampaignConnectionRemainingPreviews]
+  remainingViews: [CampaignConnectionRemainingViews]
+  remainingActions: [CampaignConnectionRemainingActions]
+  criteria: [CampaignConnectionCriteria]
+}
+
+type CampaignConnectionId {
+  key: ID
+  connection: CampaignConnection
+}
+
+type CampaignConnectionCreated_at {
+  key: DateTime
+  connection: CampaignConnection
+}
+
+type CampaignConnectionUpdated_at {
+  key: DateTime
+  connection: CampaignConnection
+}
+
+type CampaignConnectionName {
+  key: String
+  connection: CampaignConnection
+}
+
+type CampaignConnectionActive {
+  key: Boolean
+  connection: CampaignConnection
+}
+
+type CampaignConnectionDateStart {
+  key: DateTime
+  connection: CampaignConnection
+}
+
+type CampaignConnectionDateEnd {
+  key: DateTime
+  connection: CampaignConnection
+}
+
+type CampaignConnectionTargetUrlDomains {
+  key: JSON
+  connection: CampaignConnection
+}
+
+type CampaignConnectionTargetKeywords {
+  key: JSON
+  connection: CampaignConnection
+}
+
+type CampaignConnectionPriority {
+  key: Int
+  connection: CampaignConnection
+}
+
+type CampaignConnectionRemainingPreviews {
+  key: ID
+  connection: CampaignConnection
+}
+
+type CampaignConnectionRemainingViews {
+  key: ID
+  connection: CampaignConnection
+}
+
+type CampaignConnectionRemainingActions {
+  key: ID
+  connection: CampaignConnection
+}
+
+type CampaignConnectionCriteria {
+  key: JSON
+  connection: CampaignConnection
+}
+
+input CampaignInput {
+  name: String!
+  active: Boolean
+  dateStart: DateTime
+  dateEnd: DateTime
+  targetUrlDomains: JSON
+  targetDistributions: [ID]
+  activations: [ID]
+  targetKeywords: JSON
+  priority: Int
+  remainingPreviews: Long
+  remainingViews: Long
+  remainingActions: Long
+  criteria: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editCampaignInput {
+  name: String
+  active: Boolean
+  dateStart: DateTime
+  dateEnd: DateTime
+  targetUrlDomains: JSON
+  targetDistributions: [ID]
+  activations: [ID]
+  targetKeywords: JSON
+  priority: Int
+  remainingPreviews: Long
+  remainingViews: Long
+  remainingActions: Long
+  criteria: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createCampaignInput {
+  data: CampaignInput
+}
+
+type createCampaignPayload {
+  campaign: Campaign
+}
+
+input updateCampaignInput {
+  where: InputID
+  data: editCampaignInput
+}
+
+type updateCampaignPayload {
+  campaign: Campaign
+}
+
+input deleteCampaignInput {
+  where: InputID
+}
+
+type deleteCampaignPayload {
+  campaign: Campaign
+}
+
+enum ENUM_DISTRIBUTION_TYPE {
+  dynamic
+  overlay
+  legacy
+  video
+  audio
+  carousel
+  interactive
+  catalog
+  admin
+}
+
+enum ENUM_DISTRIBUTION_MEDIATYPE {
+  youtube
+  vimeo
+  file
+}
+
+"""
+A distribution is the only thing that can be experienced. It contains a set of rules and a reference to a production, which contains a timeline of data
+"""
+type Distribution {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  settings: JSON
+
+  """Keywords that describe this entity. Must be an JSON array."""
+  keywords: JSON
+  data: JSON
+  creator: String
+  property: Property
+  type: ENUM_DISTRIBUTION_TYPE
+  mediaType: ENUM_DISTRIBUTION_MEDIATYPE
+  mediaId: String
+  mediaFile: UploadFile
+  media: String
+
+  """This column is deprecated. Please use coverMedia"""
+  cover: UploadFile
+  coverImage: UserMedia
+  slug: String
+  chat: JSON
+  owner: UsersPermissionsUser
+  clientId: String
+  production: Production
+  forBackupSetting: Boolean
+  forKuratorSetting: Boolean
+  forStreamingSetting: Boolean
+  parent: UserMediaFolder
+  created_by: AdminUser
+  updated_by: AdminUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type DistributionConnection {
+  values: [Distribution]
+  groupBy: DistributionGroupBy
+  aggregate: DistributionAggregator
+}
+
+type DistributionAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type DistributionGroupBy {
+  id: [DistributionConnectionId]
+  created_at: [DistributionConnectionCreated_at]
+  updated_at: [DistributionConnectionUpdated_at]
+  name: [DistributionConnectionName]
+  settings: [DistributionConnectionSettings]
+  keywords: [DistributionConnectionKeywords]
+  data: [DistributionConnectionData]
+  creator: [DistributionConnectionCreator]
+  property: [DistributionConnectionProperty]
+  type: [DistributionConnectionType]
+  mediaType: [DistributionConnectionMediaType]
+  mediaId: [DistributionConnectionMediaId]
+  mediaFile: [DistributionConnectionMediaFile]
+  media: [DistributionConnectionMedia]
+  cover: [DistributionConnectionCover]
+  coverImage: [DistributionConnectionCoverImage]
+  slug: [DistributionConnectionSlug]
+  chat: [DistributionConnectionChat]
+  owner: [DistributionConnectionOwner]
+  clientId: [DistributionConnectionClientId]
+  production: [DistributionConnectionProduction]
+  forBackupSetting: [DistributionConnectionForBackupSetting]
+  forKuratorSetting: [DistributionConnectionForKuratorSetting]
+  forStreamingSetting: [DistributionConnectionForStreamingSetting]
+  parent: [DistributionConnectionParent]
+  created_by: [DistributionConnectionCreated_by]
+  updated_by: [DistributionConnectionUpdated_by]
+}
+
+type DistributionConnectionId {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionCreated_at {
+  key: DateTime
+  connection: DistributionConnection
+}
+
+type DistributionConnectionUpdated_at {
+  key: DateTime
+  connection: DistributionConnection
+}
+
+type DistributionConnectionName {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionSettings {
+  key: JSON
+  connection: DistributionConnection
+}
+
+type DistributionConnectionKeywords {
+  key: JSON
+  connection: DistributionConnection
+}
+
+type DistributionConnectionData {
+  key: JSON
+  connection: DistributionConnection
+}
+
+type DistributionConnectionCreator {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionProperty {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionType {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionMediaType {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionMediaId {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionMediaFile {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionMedia {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionCover {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionCoverImage {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionSlug {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionChat {
+  key: JSON
+  connection: DistributionConnection
+}
+
+type DistributionConnectionOwner {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionClientId {
+  key: String
+  connection: DistributionConnection
+}
+
+type DistributionConnectionProduction {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionForBackupSetting {
+  key: Boolean
+  connection: DistributionConnection
+}
+
+type DistributionConnectionForKuratorSetting {
+  key: Boolean
+  connection: DistributionConnection
+}
+
+type DistributionConnectionForStreamingSetting {
+  key: Boolean
+  connection: DistributionConnection
+}
+
+type DistributionConnectionParent {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionCreated_by {
+  key: ID
+  connection: DistributionConnection
+}
+
+type DistributionConnectionUpdated_by {
+  key: ID
+  connection: DistributionConnection
+}
+
+input DistributionInput {
+  name: String
+  settings: JSON
+  keywords: JSON
+  data: JSON
+  creator: String
+  property: ID
+  type: ENUM_DISTRIBUTION_TYPE
+  mediaType: ENUM_DISTRIBUTION_MEDIATYPE
+  mediaId: String
+  mediaFile: ID
+  media: String
+  cover: ID
+  coverImage: ID
+  slug: String
+  chat: JSON
+  owner: ID
+  clientId: String
+  production: ID
+  users: [ID]
+  forBackupSetting: Boolean
+  hidden: JSON
+  forKuratorSetting: Boolean
+  forStreamingSetting: Boolean
+  parent: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editDistributionInput {
+  name: String
+  settings: JSON
+  keywords: JSON
+  data: JSON
+  creator: String
+  property: ID
+  type: ENUM_DISTRIBUTION_TYPE
+  mediaType: ENUM_DISTRIBUTION_MEDIATYPE
+  mediaId: String
+  mediaFile: ID
+  media: String
+  cover: ID
+  coverImage: ID
+  slug: String
+  chat: JSON
+  owner: ID
+  clientId: String
+  production: ID
+  users: [ID]
+  forBackupSetting: Boolean
+  hidden: JSON
+  forKuratorSetting: Boolean
+  forStreamingSetting: Boolean
+  parent: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createDistributionInput {
+  data: DistributionInput
+}
+
+type createDistributionPayload {
+  distribution: Distribution
+}
+
+input updateDistributionInput {
+  where: InputID
+  data: editDistributionInput
+}
+
+type updateDistributionPayload {
+  distribution: Distribution
+}
+
+input deleteDistributionInput {
+  where: InputID
+}
+
+type deleteDistributionPayload {
+  distribution: Distribution
+}
+
+type Domain {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+  Description: String
+  mainImage: UploadFile
+  settings: JSON
+
+  """Keywords that describe this entity. Must be an JSON array."""
+  keywords: JSON
+  organizations(sort: String, limit: Int, start: Int, where: JSON): [Organizations]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type DomainConnection {
+  values: [Domain]
+  groupBy: DomainGroupBy
+  aggregate: DomainAggregator
+}
+
+type DomainAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type DomainGroupBy {
+  id: [DomainConnectionId]
+  created_at: [DomainConnectionCreated_at]
+  updated_at: [DomainConnectionUpdated_at]
+  Name: [DomainConnectionName]
+  Description: [DomainConnectionDescription]
+  mainImage: [DomainConnectionMainImage]
+  settings: [DomainConnectionSettings]
+  keywords: [DomainConnectionKeywords]
+}
+
+type DomainConnectionId {
+  key: ID
+  connection: DomainConnection
+}
+
+type DomainConnectionCreated_at {
+  key: DateTime
+  connection: DomainConnection
+}
+
+type DomainConnectionUpdated_at {
+  key: DateTime
+  connection: DomainConnection
+}
+
+type DomainConnectionName {
+  key: String
+  connection: DomainConnection
+}
+
+type DomainConnectionDescription {
+  key: String
+  connection: DomainConnection
+}
+
+type DomainConnectionMainImage {
+  key: ID
+  connection: DomainConnection
+}
+
+type DomainConnectionSettings {
+  key: JSON
+  connection: DomainConnection
+}
+
+type DomainConnectionKeywords {
+  key: JSON
+  connection: DomainConnection
+}
+
+input DomainInput {
+  Name: String
+  Description: String
+  mainImage: ID
+  settings: JSON
+  keywords: JSON
+  organizations: [ID]
+  users: [ID]
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editDomainInput {
+  Name: String
+  Description: String
+  mainImage: ID
+  settings: JSON
+  keywords: JSON
+  organizations: [ID]
+  users: [ID]
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createDomainInput {
+  data: DomainInput
+}
+
+type createDomainPayload {
+  domain: Domain
+}
+
+input updateDomainInput {
+  where: InputID
+  data: editDomainInput
+}
+
+type updateDomainPayload {
+  domain: Domain
+}
+
+input deleteDomainInput {
+  where: InputID
+}
+
+type deleteDomainPayload {
+  domain: Domain
+}
+
+type DynamicContent {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  settings: JSON
+  hidden: JSON
+}
+
+type DynamicContentConnection {
+  values: [DynamicContent]
+  groupBy: DynamicContentGroupBy
+  aggregate: DynamicContentAggregator
+}
+
+type DynamicContentAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type DynamicContentGroupBy {
+  id: [DynamicContentConnectionId]
+  created_at: [DynamicContentConnectionCreated_at]
+  updated_at: [DynamicContentConnectionUpdated_at]
+  name: [DynamicContentConnectionName]
+  settings: [DynamicContentConnectionSettings]
+  hidden: [DynamicContentConnectionHidden]
+}
+
+type DynamicContentConnectionId {
+  key: ID
+  connection: DynamicContentConnection
+}
+
+type DynamicContentConnectionCreated_at {
+  key: DateTime
+  connection: DynamicContentConnection
+}
+
+type DynamicContentConnectionUpdated_at {
+  key: DateTime
+  connection: DynamicContentConnection
+}
+
+type DynamicContentConnectionName {
+  key: String
+  connection: DynamicContentConnection
+}
+
+type DynamicContentConnectionSettings {
+  key: JSON
+  connection: DynamicContentConnection
+}
+
+type DynamicContentConnectionHidden {
+  key: JSON
+  connection: DynamicContentConnection
+}
+
+input DynamicContentInput {
+  name: String
+  settings: JSON
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editDynamicContentInput {
+  name: String
+  settings: JSON
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createDynamicContentInput {
+  data: DynamicContentInput
+}
+
+type createDynamicContentPayload {
+  dynamicContent: DynamicContent
+}
+
+input updateDynamicContentInput {
+  where: InputID
+  data: editDynamicContentInput
+}
+
+type updateDynamicContentPayload {
+  dynamicContent: DynamicContent
+}
+
+input deleteDynamicContentInput {
+  where: InputID
+}
+
+type deleteDynamicContentPayload {
+  dynamicContent: DynamicContent
+}
+
+type Organizations {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+  Description: String
+  mainImage: UploadFile
+  settings: JSON
+  domain: Domain
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type OrganizationsConnection {
+  values: [Organizations]
+  groupBy: OrganizationsGroupBy
+  aggregate: OrganizationsAggregator
+}
+
+type OrganizationsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type OrganizationsGroupBy {
+  id: [OrganizationsConnectionId]
+  created_at: [OrganizationsConnectionCreated_at]
+  updated_at: [OrganizationsConnectionUpdated_at]
+  Name: [OrganizationsConnectionName]
+  Description: [OrganizationsConnectionDescription]
+  mainImage: [OrganizationsConnectionMainImage]
+  settings: [OrganizationsConnectionSettings]
+  domain: [OrganizationsConnectionDomain]
+}
+
+type OrganizationsConnectionId {
+  key: ID
+  connection: OrganizationsConnection
+}
+
+type OrganizationsConnectionCreated_at {
+  key: DateTime
+  connection: OrganizationsConnection
+}
+
+type OrganizationsConnectionUpdated_at {
+  key: DateTime
+  connection: OrganizationsConnection
+}
+
+type OrganizationsConnectionName {
+  key: String
+  connection: OrganizationsConnection
+}
+
+type OrganizationsConnectionDescription {
+  key: String
+  connection: OrganizationsConnection
+}
+
+type OrganizationsConnectionMainImage {
+  key: ID
+  connection: OrganizationsConnection
+}
+
+type OrganizationsConnectionSettings {
+  key: JSON
+  connection: OrganizationsConnection
+}
+
+type OrganizationsConnectionDomain {
+  key: ID
+  connection: OrganizationsConnection
+}
+
+input OrganizationInput {
+  Name: String
+  Description: String
+  mainImage: ID
+  settings: JSON
+  users: [ID]
+  domain: ID
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editOrganizationInput {
+  Name: String
+  Description: String
+  mainImage: ID
+  settings: JSON
+  users: [ID]
+  domain: ID
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createOrganizationInput {
+  data: OrganizationInput
+}
+
+type createOrganizationPayload {
+  organization: Organizations
+}
+
+input updateOrganizationInput {
+  where: InputID
+  data: editOrganizationInput
+}
+
+type updateOrganizationPayload {
+  organization: Organizations
+}
+
+input deleteOrganizationInput {
+  where: InputID
+}
+
+type deleteOrganizationPayload {
+  organization: Organizations
+}
+
+enum ENUM_PRODUCTION_TYPE {
+  legacy
+  video
+  audio
+  carousel
+  interactive
+  catalog
+}
+
+type Production {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  settings: JSON
+
+  """Keywords that describe this entity. Must be an JSON array."""
+  keywords: JSON
+  data: JSON
+  type: ENUM_PRODUCTION_TYPE
+  fingerprints: JSON
+  media: String
+  clientId: String
+  organization: Organizations
+  property: Property
+  mainImage: UploadFile
+  cover: UploadFile
+}
+
+type ProductionConnection {
+  values: [Production]
+  groupBy: ProductionGroupBy
+  aggregate: ProductionAggregator
+}
+
+type ProductionAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ProductionGroupBy {
+  id: [ProductionConnectionId]
+  created_at: [ProductionConnectionCreated_at]
+  updated_at: [ProductionConnectionUpdated_at]
+  name: [ProductionConnectionName]
+  settings: [ProductionConnectionSettings]
+  keywords: [ProductionConnectionKeywords]
+  data: [ProductionConnectionData]
+  type: [ProductionConnectionType]
+  fingerprints: [ProductionConnectionFingerprints]
+  media: [ProductionConnectionMedia]
+  clientId: [ProductionConnectionClientId]
+  organization: [ProductionConnectionOrganization]
+  property: [ProductionConnectionProperty]
+  mainImage: [ProductionConnectionMainImage]
+  cover: [ProductionConnectionCover]
+}
+
+type ProductionConnectionId {
+  key: ID
+  connection: ProductionConnection
+}
+
+type ProductionConnectionCreated_at {
+  key: DateTime
+  connection: ProductionConnection
+}
+
+type ProductionConnectionUpdated_at {
+  key: DateTime
+  connection: ProductionConnection
+}
+
+type ProductionConnectionName {
+  key: String
+  connection: ProductionConnection
+}
+
+type ProductionConnectionSettings {
+  key: JSON
+  connection: ProductionConnection
+}
+
+type ProductionConnectionKeywords {
+  key: JSON
+  connection: ProductionConnection
+}
+
+type ProductionConnectionData {
+  key: JSON
+  connection: ProductionConnection
+}
+
+type ProductionConnectionType {
+  key: String
+  connection: ProductionConnection
+}
+
+type ProductionConnectionFingerprints {
+  key: JSON
+  connection: ProductionConnection
+}
+
+type ProductionConnectionMedia {
+  key: String
+  connection: ProductionConnection
+}
+
+type ProductionConnectionClientId {
+  key: String
+  connection: ProductionConnection
+}
+
+type ProductionConnectionOrganization {
+  key: ID
+  connection: ProductionConnection
+}
+
+type ProductionConnectionProperty {
+  key: ID
+  connection: ProductionConnection
+}
+
+type ProductionConnectionMainImage {
+  key: ID
+  connection: ProductionConnection
+}
+
+type ProductionConnectionCover {
+  key: ID
+  connection: ProductionConnection
+}
+
+input ProductionInput {
+  name: String
+  settings: JSON
+  keywords: JSON
+  data: JSON
+  type: ENUM_PRODUCTION_TYPE
+  fingerprints: JSON
+  media: String
+  clientId: String
+  organization: ID
+  property: ID
+  mainImage: ID
+  cover: ID
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editProductionInput {
+  name: String
+  settings: JSON
+  keywords: JSON
+  data: JSON
+  type: ENUM_PRODUCTION_TYPE
+  fingerprints: JSON
+  media: String
+  clientId: String
+  organization: ID
+  property: ID
+  mainImage: ID
+  cover: ID
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createProductionInput {
+  data: ProductionInput
+}
+
+type createProductionPayload {
+  production: Production
+}
+
+input updateProductionInput {
+  where: InputID
+  data: editProductionInput
+}
+
+type updateProductionPayload {
+  production: Production
+}
+
+input deleteProductionInput {
+  where: InputID
+}
+
+type deleteProductionPayload {
+  production: Production
+}
+
+type Property {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+  Description: String
+  MainImage: UploadFile
+  SetStorageMB: Int
+  SetNumberApiSessions: Int
+  SetNumTitles: Int
+  SetNumberDistributions: Int
+  SetSessionsExhausted: Boolean
+  SetStorageExhausted: Boolean
+  SetTitlesExhausted: Boolean
+  SetDistributionsExhausted: Boolean
+  parent: Property
+  organization: Organizations
+  settings: JSON
+
+  """Keywords that describe this entity. Must be an JSON array."""
+  keywords: JSON
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type PropertyConnection {
+  values: [Property]
+  groupBy: PropertyGroupBy
+  aggregate: PropertyAggregator
+}
+
+type PropertyAggregator {
+  count: Int
+  totalCount: Int
+  sum: PropertyAggregatorSum
+  avg: PropertyAggregatorAvg
+  min: PropertyAggregatorMin
+  max: PropertyAggregatorMax
+}
+
+type PropertyAggregatorSum {
+  SetStorageMB: Float
+  SetNumberApiSessions: Float
+  SetNumTitles: Float
+  SetNumberDistributions: Float
+}
+
+type PropertyAggregatorAvg {
+  SetStorageMB: Float
+  SetNumberApiSessions: Float
+  SetNumTitles: Float
+  SetNumberDistributions: Float
+}
+
+type PropertyAggregatorMin {
+  SetStorageMB: Float
+  SetNumberApiSessions: Float
+  SetNumTitles: Float
+  SetNumberDistributions: Float
+}
+
+type PropertyAggregatorMax {
+  SetStorageMB: Float
+  SetNumberApiSessions: Float
+  SetNumTitles: Float
+  SetNumberDistributions: Float
+}
+
+type PropertyGroupBy {
+  id: [PropertyConnectionId]
+  created_at: [PropertyConnectionCreated_at]
+  updated_at: [PropertyConnectionUpdated_at]
+  Name: [PropertyConnectionName]
+  Description: [PropertyConnectionDescription]
+  MainImage: [PropertyConnectionMainImage]
+  SetStorageMB: [PropertyConnectionSetStorageMB]
+  SetNumberApiSessions: [PropertyConnectionSetNumberApiSessions]
+  SetNumTitles: [PropertyConnectionSetNumTitles]
+  SetNumberDistributions: [PropertyConnectionSetNumberDistributions]
+  SetSessionsExhausted: [PropertyConnectionSetSessionsExhausted]
+  SetStorageExhausted: [PropertyConnectionSetStorageExhausted]
+  SetTitlesExhausted: [PropertyConnectionSetTitlesExhausted]
+  SetDistributionsExhausted: [PropertyConnectionSetDistributionsExhausted]
+  parent: [PropertyConnectionParent]
+  organization: [PropertyConnectionOrganization]
+  settings: [PropertyConnectionSettings]
+  keywords: [PropertyConnectionKeywords]
+}
+
+type PropertyConnectionId {
+  key: ID
+  connection: PropertyConnection
+}
+
+type PropertyConnectionCreated_at {
+  key: DateTime
+  connection: PropertyConnection
+}
+
+type PropertyConnectionUpdated_at {
+  key: DateTime
+  connection: PropertyConnection
+}
+
+type PropertyConnectionName {
+  key: String
+  connection: PropertyConnection
+}
+
+type PropertyConnectionDescription {
+  key: String
+  connection: PropertyConnection
+}
+
+type PropertyConnectionMainImage {
+  key: ID
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetStorageMB {
+  key: Int
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetNumberApiSessions {
+  key: Int
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetNumTitles {
+  key: Int
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetNumberDistributions {
+  key: Int
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetSessionsExhausted {
+  key: Boolean
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetStorageExhausted {
+  key: Boolean
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetTitlesExhausted {
+  key: Boolean
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSetDistributionsExhausted {
+  key: Boolean
+  connection: PropertyConnection
+}
+
+type PropertyConnectionParent {
+  key: ID
+  connection: PropertyConnection
+}
+
+type PropertyConnectionOrganization {
+  key: ID
+  connection: PropertyConnection
+}
+
+type PropertyConnectionSettings {
+  key: JSON
+  connection: PropertyConnection
+}
+
+type PropertyConnectionKeywords {
+  key: JSON
+  connection: PropertyConnection
+}
+
+input PropertyInput {
+  Name: String
+  Description: String
+  MainImage: ID
+  SetStorageMB: Int
+  SetNumberApiSessions: Int
+  SetNumTitles: Int
+  SetNumberDistributions: Int
+  SetSessionsExhausted: Boolean
+  SetStorageExhausted: Boolean
+  SetTitlesExhausted: Boolean
+  SetDistributionsExhausted: Boolean
+  parent: ID
+  organization: ID
+  settings: JSON
+  keywords: JSON
+  users: [ID]
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editPropertyInput {
+  Name: String
+  Description: String
+  MainImage: ID
+  SetStorageMB: Int
+  SetNumberApiSessions: Int
+  SetNumTitles: Int
+  SetNumberDistributions: Int
+  SetSessionsExhausted: Boolean
+  SetStorageExhausted: Boolean
+  SetTitlesExhausted: Boolean
+  SetDistributionsExhausted: Boolean
+  parent: ID
+  organization: ID
+  settings: JSON
+  keywords: JSON
+  users: [ID]
+  hidden: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createPropertyInput {
+  data: PropertyInput
+}
+
+type createPropertyPayload {
+  property: Property
+}
+
+input updatePropertyInput {
+  where: InputID
+  data: editPropertyInput
+}
+
+type updatePropertyPayload {
+  property: Property
+}
+
+input deletePropertyInput {
+  where: InputID
+}
+
+type deletePropertyPayload {
+  property: Property
+}
+
+type Shortcode {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  code: String
+  url: String!
+  counter: Long
+}
+
+type ShortcodeConnection {
+  values: [Shortcode]
+  groupBy: ShortcodeGroupBy
+  aggregate: ShortcodeAggregator
+}
+
+type ShortcodeAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ShortcodeGroupBy {
+  id: [ShortcodeConnectionId]
+  created_at: [ShortcodeConnectionCreated_at]
+  updated_at: [ShortcodeConnectionUpdated_at]
+  code: [ShortcodeConnectionCode]
+  url: [ShortcodeConnectionUrl]
+  counter: [ShortcodeConnectionCounter]
+}
+
+type ShortcodeConnectionId {
+  key: ID
+  connection: ShortcodeConnection
+}
+
+type ShortcodeConnectionCreated_at {
+  key: DateTime
+  connection: ShortcodeConnection
+}
+
+type ShortcodeConnectionUpdated_at {
+  key: DateTime
+  connection: ShortcodeConnection
+}
+
+type ShortcodeConnectionCode {
+  key: String
+  connection: ShortcodeConnection
+}
+
+type ShortcodeConnectionUrl {
+  key: String
+  connection: ShortcodeConnection
+}
+
+type ShortcodeConnectionCounter {
+  key: ID
+  connection: ShortcodeConnection
+}
+
+input ShortcodeInput {
+  code: String
+  url: String!
+  counter: Long
+  created_by: ID
+  updated_by: ID
+}
+
+input editShortcodeInput {
+  code: String
+  url: String
+  counter: Long
+  created_by: ID
+  updated_by: ID
+}
+
+input createShortcodeInput {
+  data: ShortcodeInput
+}
+
+type createShortcodePayload {
+  shortcode: Shortcode
+}
+
+input updateShortcodeInput {
+  where: InputID
+  data: editShortcodeInput
+}
+
+type updateShortcodePayload {
+  shortcode: Shortcode
+}
+
+input deleteShortcodeInput {
+  where: InputID
+}
+
+type deleteShortcodePayload {
+  shortcode: Shortcode
+}
+
+type TemplateBlock {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  block: Apps
+  template: Template
+  order: String
+  published_at: DateTime
+}
+
+type TemplateBlockConnection {
+  values: [TemplateBlock]
+  groupBy: TemplateBlockGroupBy
+  aggregate: TemplateBlockAggregator
+}
+
+type TemplateBlockAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TemplateBlockGroupBy {
+  id: [TemplateBlockConnectionId]
+  created_at: [TemplateBlockConnectionCreated_at]
+  updated_at: [TemplateBlockConnectionUpdated_at]
+  block: [TemplateBlockConnectionBlock]
+  template: [TemplateBlockConnectionTemplate]
+  order: [TemplateBlockConnectionOrder]
+  published_at: [TemplateBlockConnectionPublished_at]
+}
+
+type TemplateBlockConnectionId {
+  key: ID
+  connection: TemplateBlockConnection
+}
+
+type TemplateBlockConnectionCreated_at {
+  key: DateTime
+  connection: TemplateBlockConnection
+}
+
+type TemplateBlockConnectionUpdated_at {
+  key: DateTime
+  connection: TemplateBlockConnection
+}
+
+type TemplateBlockConnectionBlock {
+  key: ID
+  connection: TemplateBlockConnection
+}
+
+type TemplateBlockConnectionTemplate {
+  key: ID
+  connection: TemplateBlockConnection
+}
+
+type TemplateBlockConnectionOrder {
+  key: String
+  connection: TemplateBlockConnection
+}
+
+type TemplateBlockConnectionPublished_at {
+  key: DateTime
+  connection: TemplateBlockConnection
+}
+
+input TemplateBlockInput {
+  block: ID
+  template: ID
+  order: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editTemplateBlockInput {
+  block: ID
+  template: ID
+  order: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createTemplateBlockInput {
+  data: TemplateBlockInput
+}
+
+type createTemplateBlockPayload {
+  templateBlock: TemplateBlock
+}
+
+input updateTemplateBlockInput {
+  where: InputID
+  data: editTemplateBlockInput
+}
+
+type updateTemplateBlockPayload {
+  templateBlock: TemplateBlock
+}
+
+input deleteTemplateBlockInput {
+  where: InputID
+}
+
+type deleteTemplateBlockPayload {
+  templateBlock: TemplateBlock
+}
+
+type Template {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  order: String
+  description: String
+  settings: JSON
+}
+
+type TemplateConnection {
+  values: [Template]
+  groupBy: TemplateGroupBy
+  aggregate: TemplateAggregator
+}
+
+type TemplateAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TemplateGroupBy {
+  id: [TemplateConnectionId]
+  created_at: [TemplateConnectionCreated_at]
+  updated_at: [TemplateConnectionUpdated_at]
+  name: [TemplateConnectionName]
+  order: [TemplateConnectionOrder]
+  description: [TemplateConnectionDescription]
+  settings: [TemplateConnectionSettings]
+}
+
+type TemplateConnectionId {
+  key: ID
+  connection: TemplateConnection
+}
+
+type TemplateConnectionCreated_at {
+  key: DateTime
+  connection: TemplateConnection
+}
+
+type TemplateConnectionUpdated_at {
+  key: DateTime
+  connection: TemplateConnection
+}
+
+type TemplateConnectionName {
+  key: String
+  connection: TemplateConnection
+}
+
+type TemplateConnectionOrder {
+  key: String
+  connection: TemplateConnection
+}
+
+type TemplateConnectionDescription {
+  key: String
+  connection: TemplateConnection
+}
+
+type TemplateConnectionSettings {
+  key: JSON
+  connection: TemplateConnection
+}
+
+input TemplateInput {
+  name: String
+  order: String
+  description: String
+  settings: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editTemplateInput {
+  name: String
+  order: String
+  description: String
+  settings: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createTemplateInput {
+  data: TemplateInput
+}
+
+type createTemplatePayload {
+  template: Template
+}
+
+input updateTemplateInput {
+  where: InputID
+  data: editTemplateInput
+}
+
+type updateTemplatePayload {
+  template: Template
+}
+
+input deleteTemplateInput {
+  where: InputID
+}
+
+type deleteTemplatePayload {
+  template: Template
+}
+
+type Updates {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  details: String
+  settings: JSON
+  app: String
+  version: String
+  published_at: DateTime
+}
+
+type UpdatesConnection {
+  values: [Updates]
+  groupBy: UpdatesGroupBy
+  aggregate: UpdatesAggregator
+}
+
+type UpdatesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UpdatesGroupBy {
+  id: [UpdatesConnectionId]
+  created_at: [UpdatesConnectionCreated_at]
+  updated_at: [UpdatesConnectionUpdated_at]
+  name: [UpdatesConnectionName]
+  details: [UpdatesConnectionDetails]
+  settings: [UpdatesConnectionSettings]
+  app: [UpdatesConnectionApp]
+  version: [UpdatesConnectionVersion]
+  published_at: [UpdatesConnectionPublished_at]
+}
+
+type UpdatesConnectionId {
+  key: ID
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionCreated_at {
+  key: DateTime
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionUpdated_at {
+  key: DateTime
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionName {
+  key: String
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionDetails {
+  key: String
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionSettings {
+  key: JSON
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionApp {
+  key: String
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionVersion {
+  key: String
+  connection: UpdatesConnection
+}
+
+type UpdatesConnectionPublished_at {
+  key: DateTime
+  connection: UpdatesConnection
+}
+
+input UpdateInput {
+  name: String
+  details: String
+  settings: JSON
+  app: String
+  version: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editUpdateInput {
+  name: String
+  details: String
+  settings: JSON
+  app: String
+  version: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createUpdateInput {
+  data: UpdateInput
+}
+
+type createUpdatePayload {
+  update: Updates
+}
+
+input updateUpdateInput {
+  where: InputID
+  data: editUpdateInput
+}
+
+type updateUpdatePayload {
+  update: Updates
+}
+
+input deleteUpdateInput {
+  where: InputID
+}
+
+type deleteUpdatePayload {
+  update: Updates
+}
+
+type UserAppBlock {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  type: String!
+  config: JSON
+  settings: JSON
+  owner: UsersPermissionsUser
+}
+
+type UserAppBlockConnection {
+  values: [UserAppBlock]
+  groupBy: UserAppBlockGroupBy
+  aggregate: UserAppBlockAggregator
+}
+
+type UserAppBlockAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UserAppBlockGroupBy {
+  id: [UserAppBlockConnectionId]
+  created_at: [UserAppBlockConnectionCreated_at]
+  updated_at: [UserAppBlockConnectionUpdated_at]
+  name: [UserAppBlockConnectionName]
+  type: [UserAppBlockConnectionType]
+  config: [UserAppBlockConnectionConfig]
+  settings: [UserAppBlockConnectionSettings]
+  owner: [UserAppBlockConnectionOwner]
+}
+
+type UserAppBlockConnectionId {
+  key: ID
+  connection: UserAppBlockConnection
+}
+
+type UserAppBlockConnectionCreated_at {
+  key: DateTime
+  connection: UserAppBlockConnection
+}
+
+type UserAppBlockConnectionUpdated_at {
+  key: DateTime
+  connection: UserAppBlockConnection
+}
+
+type UserAppBlockConnectionName {
+  key: String
+  connection: UserAppBlockConnection
+}
+
+type UserAppBlockConnectionType {
+  key: String
+  connection: UserAppBlockConnection
+}
+
+type UserAppBlockConnectionConfig {
+  key: JSON
+  connection: UserAppBlockConnection
+}
+
+type UserAppBlockConnectionSettings {
+  key: JSON
+  connection: UserAppBlockConnection
+}
+
+type UserAppBlockConnectionOwner {
+  key: ID
+  connection: UserAppBlockConnection
+}
+
+input UserAppBlockInput {
+  name: String
+  type: String!
+  config: JSON
+  settings: JSON
+  owner: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserAppBlockInput {
+  name: String
+  type: String
+  config: JSON
+  settings: JSON
+  owner: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserAppBlockInput {
+  data: UserAppBlockInput
+}
+
+type createUserAppBlockPayload {
+  userAppBlock: UserAppBlock
+}
+
+input updateUserAppBlockInput {
+  where: InputID
+  data: editUserAppBlockInput
+}
+
+type updateUserAppBlockPayload {
+  userAppBlock: UserAppBlock
+}
+
+input deleteUserAppBlockInput {
+  where: InputID
+}
+
+type deleteUserAppBlockPayload {
+  userAppBlock: UserAppBlock
+}
+
+enum ENUM_USERMEDIAFOLDER_TYPE {
+  asset
+  metacontent
+  content
+  liveContent
+}
+
+type UserMediaFolder {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  owner: UsersPermissionsUser
+  title: String
+  parent: UserMediaFolder
+  type: ENUM_USERMEDIAFOLDER_TYPE
+}
+
+type UserMediaFolderConnection {
+  values: [UserMediaFolder]
+  groupBy: UserMediaFolderGroupBy
+  aggregate: UserMediaFolderAggregator
+}
+
+type UserMediaFolderAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UserMediaFolderGroupBy {
+  id: [UserMediaFolderConnectionId]
+  created_at: [UserMediaFolderConnectionCreated_at]
+  updated_at: [UserMediaFolderConnectionUpdated_at]
+  owner: [UserMediaFolderConnectionOwner]
+  title: [UserMediaFolderConnectionTitle]
+  parent: [UserMediaFolderConnectionParent]
+  type: [UserMediaFolderConnectionType]
+}
+
+type UserMediaFolderConnectionId {
+  key: ID
+  connection: UserMediaFolderConnection
+}
+
+type UserMediaFolderConnectionCreated_at {
+  key: DateTime
+  connection: UserMediaFolderConnection
+}
+
+type UserMediaFolderConnectionUpdated_at {
+  key: DateTime
+  connection: UserMediaFolderConnection
+}
+
+type UserMediaFolderConnectionOwner {
+  key: ID
+  connection: UserMediaFolderConnection
+}
+
+type UserMediaFolderConnectionTitle {
+  key: String
+  connection: UserMediaFolderConnection
+}
+
+type UserMediaFolderConnectionParent {
+  key: ID
+  connection: UserMediaFolderConnection
+}
+
+type UserMediaFolderConnectionType {
+  key: String
+  connection: UserMediaFolderConnection
+}
+
+input UserMediaFolderInput {
+  owner: ID
+  title: String
+  parent: ID
+  type: ENUM_USERMEDIAFOLDER_TYPE
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserMediaFolderInput {
+  owner: ID
+  title: String
+  parent: ID
+  type: ENUM_USERMEDIAFOLDER_TYPE
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserMediaFolderInput {
+  data: UserMediaFolderInput
+}
+
+type createUserMediaFolderPayload {
+  userMediaFolder: UserMediaFolder
+}
+
+input updateUserMediaFolderInput {
+  where: InputID
+  data: editUserMediaFolderInput
+}
+
+type updateUserMediaFolderPayload {
+  userMediaFolder: UserMediaFolder
+}
+
+input deleteUserMediaFolderInput {
+  where: InputID
+}
+
+type deleteUserMediaFolderPayload {
+  userMediaFolder: UserMediaFolder
+}
+
+type UserMedia {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  file: UploadFile
+  parent: UserMediaFolder
+  owner: UsersPermissionsUser
+  title: String
+  description: String
+}
+
+type UserMediaConnection {
+  values: [UserMedia]
+  groupBy: UserMediaGroupBy
+  aggregate: UserMediaAggregator
+}
+
+type UserMediaAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UserMediaGroupBy {
+  id: [UserMediaConnectionId]
+  created_at: [UserMediaConnectionCreated_at]
+  updated_at: [UserMediaConnectionUpdated_at]
+  file: [UserMediaConnectionFile]
+  parent: [UserMediaConnectionParent]
+  owner: [UserMediaConnectionOwner]
+  title: [UserMediaConnectionTitle]
+  description: [UserMediaConnectionDescription]
+}
+
+type UserMediaConnectionId {
+  key: ID
+  connection: UserMediaConnection
+}
+
+type UserMediaConnectionCreated_at {
+  key: DateTime
+  connection: UserMediaConnection
+}
+
+type UserMediaConnectionUpdated_at {
+  key: DateTime
+  connection: UserMediaConnection
+}
+
+type UserMediaConnectionFile {
+  key: ID
+  connection: UserMediaConnection
+}
+
+type UserMediaConnectionParent {
+  key: ID
+  connection: UserMediaConnection
+}
+
+type UserMediaConnectionOwner {
+  key: ID
+  connection: UserMediaConnection
+}
+
+type UserMediaConnectionTitle {
+  key: String
+  connection: UserMediaConnection
+}
+
+type UserMediaConnectionDescription {
+  key: String
+  connection: UserMediaConnection
+}
+
+input UserMediaInput {
+  file: ID
+  parent: ID
+  owner: ID
+  title: String
+  description: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserMediaInput {
+  file: ID
+  parent: ID
+  owner: ID
+  title: String
+  description: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserMediaInput {
+  data: UserMediaInput
+}
+
+type createUserMediaPayload {
+  userMedia: UserMedia
+}
+
+input updateUserMediaInput {
+  where: InputID
+  data: editUserMediaInput
+}
+
+type updateUserMediaPayload {
+  userMedia: UserMedia
+}
+
+input deleteUserMediaInput {
+  where: InputID
+}
+
+type deleteUserMediaPayload {
+  userMedia: UserMedia
+}
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+enum ENUM_USERSPERMISSIONSUSER_COUNTRY {
+  USA
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  name: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  AcceptEULA: Boolean
+  lat: Float
+  long: Float
+  dob: Date
+  photo: UploadFile
+  country: ENUM_USERSPERMISSIONSUSER_COUNTRY
+  phone: Long
+  userBilling: JSON
+  userShipping: JSON
+  settings: JSON
+  features: JSON
+  organizations(sort: String, limit: Int, start: Int, where: JSON): [Organizations]
+  activations(sort: String, limit: Int, start: Int, where: JSON): [Activations]
+  distributions(sort: String, limit: Int, start: Int, where: JSON): [Distribution]
+  domains(sort: String, limit: Int, start: Int, where: JSON): [Domain]
+  properties(sort: String, limit: Int, start: Int, where: JSON): [Property]
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+  sum: UsersPermissionsUserAggregatorSum
+  avg: UsersPermissionsUserAggregatorAvg
+  min: UsersPermissionsUserAggregatorMin
+  max: UsersPermissionsUserAggregatorMax
+}
+
+type UsersPermissionsUserAggregatorSum {
+  lat: Float
+  long: Float
+}
+
+type UsersPermissionsUserAggregatorAvg {
+  lat: Float
+  long: Float
+}
+
+type UsersPermissionsUserAggregatorMin {
+  lat: Float
+  long: Float
+}
+
+type UsersPermissionsUserAggregatorMax {
+  lat: Float
+  long: Float
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+  name: [UsersPermissionsUserConnectionName]
+  address: [UsersPermissionsUserConnectionAddress]
+  city: [UsersPermissionsUserConnectionCity]
+  state: [UsersPermissionsUserConnectionState]
+  zip: [UsersPermissionsUserConnectionZip]
+  AcceptEULA: [UsersPermissionsUserConnectionAcceptEULA]
+  lat: [UsersPermissionsUserConnectionLat]
+  long: [UsersPermissionsUserConnectionLong]
+  dob: [UsersPermissionsUserConnectionDob]
+  photo: [UsersPermissionsUserConnectionPhoto]
+  country: [UsersPermissionsUserConnectionCountry]
+  phone: [UsersPermissionsUserConnectionPhone]
+  userBilling: [UsersPermissionsUserConnectionUserBilling]
+  userShipping: [UsersPermissionsUserConnectionUserShipping]
+  settings: [UsersPermissionsUserConnectionSettings]
+  features: [UsersPermissionsUserConnectionFeatures]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionName {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionAddress {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCity {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionState {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionZip {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionAcceptEULA {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionLat {
+  key: Float
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionLong {
+  key: Float
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionDob {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionPhoto {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCountry {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionPhone {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUserBilling {
+  key: JSON
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUserShipping {
+  key: JSON
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionSettings {
+  key: JSON
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionFeatures {
+  key: JSON
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  confirmationToken: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  name: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  AcceptEULA: Boolean
+  organizations: [ID]
+  lat: Float
+  long: Float
+  dob: Date
+  photo: ID
+  activations: [ID]
+  country: ENUM_USERSPERMISSIONSUSER_COUNTRY
+  phone: Long
+  distributions: [ID]
+  userBilling: JSON
+  userShipping: JSON
+  domains: [ID]
+  properties: [ID]
+  settings: JSON
+  features: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  confirmationToken: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  name: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  AcceptEULA: Boolean
+  organizations: [ID]
+  lat: Float
+  long: Float
+  dob: Date
+  photo: ID
+  activations: [ID]
+  country: ENUM_USERSPERMISSIONSUSER_COUNTRY
+  phone: Long
+  distributions: [ID]
+  userBilling: JSON
+  userShipping: JSON
+  domains: [ID]
+  properties: [ID]
+  settings: JSON
+  features: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Activations | ActivationsConnection | ActivationsAggregator | ActivationsAggregatorSum | ActivationsAggregatorAvg | ActivationsAggregatorMin | ActivationsAggregatorMax | ActivationsGroupBy | ActivationsConnectionId | ActivationsConnectionCreated_at | ActivationsConnectionUpdated_at | ActivationsConnectionSettings | ActivationsConnectionData | ActivationsConnectionOwner | ActivationsConnectionTemplate | ActivationsConnectionVersion | ActivationsConnectionUuid | ActivationsConnectionViews | ActivationsConnectionInteractions | ActivationsConnectionConversions | ActivationsConnectionName | ActivationsConnectionImage | ActivationsConnectionPreviewImage | ActivationsConnectionDistributions | ActivationsConnectionHistory | ActivationsConnectionPublished | ActivationsConnectionStatus | ActivationsConnectionClientId | ActivationsConnectionSlug | ActivationsConnectionParent | createActivationPayload | updateActivationPayload | deleteActivationPayload | Analytic | AnalyticConnection | AnalyticAggregator | AnalyticGroupBy | AnalyticConnectionId | AnalyticConnectionCreated_at | AnalyticConnectionUpdated_at | AnalyticConnectionUtm_source | AnalyticConnectionUtm_medium | AnalyticConnectionUtm_campaign | AnalyticConnectionUtm_term | AnalyticConnectionUtm_content | AnalyticConnectionQuery_string | AnalyticConnectionEvent | AnalyticConnectionCampaigns | AnalyticConnectionE | AnalyticConnectionTime | AnalyticConnectionDist | AnalyticConnectionDistName | AnalyticConnectionMeta | AnalyticConnectionMetaName | AnalyticConnectionSess | AnalyticConnectionEnv | AnalyticConnectionPayload | AnalyticConnectionAgent | AnalyticConnectionMobile | AnalyticConnectionTLD | AnalyticConnectionURL | AnalyticConnectionType | AnalyticConnectionOrganization | AnalyticConnectionIp | AnalyticConnectionContinent | AnalyticConnectionCountry | AnalyticConnectionCity | AnalyticConnectionPostalCode | AnalyticConnectionLatitude | AnalyticConnectionLongitude | AnalyticConnectionTimezone | AnalyticConnectionIsAnonymousVpn | AnalyticConnectionLocation | AnalyticConnectionFlag | AnalyticConnectionDestination | AnalyticConnectionFlow_from | createAnalyticPayload | updateAnalyticPayload | deleteAnalyticPayload | Apps | AppsConnection | AppsAggregator | AppsAggregatorSum | AppsAggregatorAvg | AppsAggregatorMin | AppsAggregatorMax | AppsGroupBy | AppsConnectionId | AppsConnectionCreated_at | AppsConnectionUpdated_at | AppsConnectionSettings | AppsConnectionData | AppsConnectionPublisher | AppsConnectionName | AppsConnectionType | AppsConnectionCategory | AppsConnectionRating | AppsConnectionVersion | AppsConnectionIntegrations | AppsConnectionDownloads | AppsConnectionSlug | AppsConnectionPrivacy | AppsConnectionTerms | AppsConnectionDescription | AppsConnectionDetails | AppsConnectionSupport | AppsConnectionBilling | AppsConnectionUser | AppsConnectionProvider | AppsConnectionRepo | createAppPayload | updateAppPayload | deleteAppPayload | Backup | BackupConnection | BackupAggregator | BackupGroupBy | BackupConnectionId | BackupConnectionCreated_at | BackupConnectionUpdated_at | BackupConnectionResource | BackupConnectionResourceID | BackupConnectionData | BackupConnectionType | BackupConnectionUser | createBackupPayload | updateBackupPayload | deleteBackupPayload | Campaign | CampaignConnection | CampaignAggregator | CampaignAggregatorSum | CampaignAggregatorAvg | CampaignAggregatorMin | CampaignAggregatorMax | CampaignGroupBy | CampaignConnectionId | CampaignConnectionCreated_at | CampaignConnectionUpdated_at | CampaignConnectionName | CampaignConnectionActive | CampaignConnectionDateStart | CampaignConnectionDateEnd | CampaignConnectionTargetUrlDomains | CampaignConnectionTargetKeywords | CampaignConnectionPriority | CampaignConnectionRemainingPreviews | CampaignConnectionRemainingViews | CampaignConnectionRemainingActions | CampaignConnectionCriteria | createCampaignPayload | updateCampaignPayload | deleteCampaignPayload | Distribution | DistributionConnection | DistributionAggregator | DistributionGroupBy | DistributionConnectionId | DistributionConnectionCreated_at | DistributionConnectionUpdated_at | DistributionConnectionName | DistributionConnectionSettings | DistributionConnectionKeywords | DistributionConnectionData | DistributionConnectionCreator | DistributionConnectionProperty | DistributionConnectionType | DistributionConnectionMediaType | DistributionConnectionMediaId | DistributionConnectionMediaFile | DistributionConnectionMedia | DistributionConnectionCover | DistributionConnectionCoverImage | DistributionConnectionSlug | DistributionConnectionChat | DistributionConnectionOwner | DistributionConnectionClientId | DistributionConnectionProduction | DistributionConnectionForBackupSetting | DistributionConnectionForKuratorSetting | DistributionConnectionForStreamingSetting | DistributionConnectionParent | DistributionConnectionCreated_by | DistributionConnectionUpdated_by | createDistributionPayload | updateDistributionPayload | deleteDistributionPayload | Domain | DomainConnection | DomainAggregator | DomainGroupBy | DomainConnectionId | DomainConnectionCreated_at | DomainConnectionUpdated_at | DomainConnectionName | DomainConnectionDescription | DomainConnectionMainImage | DomainConnectionSettings | DomainConnectionKeywords | createDomainPayload | updateDomainPayload | deleteDomainPayload | DynamicContent | DynamicContentConnection | DynamicContentAggregator | DynamicContentGroupBy | DynamicContentConnectionId | DynamicContentConnectionCreated_at | DynamicContentConnectionUpdated_at | DynamicContentConnectionName | DynamicContentConnectionSettings | DynamicContentConnectionHidden | createDynamicContentPayload | updateDynamicContentPayload | deleteDynamicContentPayload | Organizations | OrganizationsConnection | OrganizationsAggregator | OrganizationsGroupBy | OrganizationsConnectionId | OrganizationsConnectionCreated_at | OrganizationsConnectionUpdated_at | OrganizationsConnectionName | OrganizationsConnectionDescription | OrganizationsConnectionMainImage | OrganizationsConnectionSettings | OrganizationsConnectionDomain | createOrganizationPayload | updateOrganizationPayload | deleteOrganizationPayload | Production | ProductionConnection | ProductionAggregator | ProductionGroupBy | ProductionConnectionId | ProductionConnectionCreated_at | ProductionConnectionUpdated_at | ProductionConnectionName | ProductionConnectionSettings | ProductionConnectionKeywords | ProductionConnectionData | ProductionConnectionType | ProductionConnectionFingerprints | ProductionConnectionMedia | ProductionConnectionClientId | ProductionConnectionOrganization | ProductionConnectionProperty | ProductionConnectionMainImage | ProductionConnectionCover | createProductionPayload | updateProductionPayload | deleteProductionPayload | Property | PropertyConnection | PropertyAggregator | PropertyAggregatorSum | PropertyAggregatorAvg | PropertyAggregatorMin | PropertyAggregatorMax | PropertyGroupBy | PropertyConnectionId | PropertyConnectionCreated_at | PropertyConnectionUpdated_at | PropertyConnectionName | PropertyConnectionDescription | PropertyConnectionMainImage | PropertyConnectionSetStorageMB | PropertyConnectionSetNumberApiSessions | PropertyConnectionSetNumTitles | PropertyConnectionSetNumberDistributions | PropertyConnectionSetSessionsExhausted | PropertyConnectionSetStorageExhausted | PropertyConnectionSetTitlesExhausted | PropertyConnectionSetDistributionsExhausted | PropertyConnectionParent | PropertyConnectionOrganization | PropertyConnectionSettings | PropertyConnectionKeywords | createPropertyPayload | updatePropertyPayload | deletePropertyPayload | Shortcode | ShortcodeConnection | ShortcodeAggregator | ShortcodeGroupBy | ShortcodeConnectionId | ShortcodeConnectionCreated_at | ShortcodeConnectionUpdated_at | ShortcodeConnectionCode | ShortcodeConnectionUrl | ShortcodeConnectionCounter | createShortcodePayload | updateShortcodePayload | deleteShortcodePayload | TemplateBlock | TemplateBlockConnection | TemplateBlockAggregator | TemplateBlockGroupBy | TemplateBlockConnectionId | TemplateBlockConnectionCreated_at | TemplateBlockConnectionUpdated_at | TemplateBlockConnectionBlock | TemplateBlockConnectionTemplate | TemplateBlockConnectionOrder | TemplateBlockConnectionPublished_at | createTemplateBlockPayload | updateTemplateBlockPayload | deleteTemplateBlockPayload | Template | TemplateConnection | TemplateAggregator | TemplateGroupBy | TemplateConnectionId | TemplateConnectionCreated_at | TemplateConnectionUpdated_at | TemplateConnectionName | TemplateConnectionOrder | TemplateConnectionDescription | TemplateConnectionSettings | createTemplatePayload | updateTemplatePayload | deleteTemplatePayload | Updates | UpdatesConnection | UpdatesAggregator | UpdatesGroupBy | UpdatesConnectionId | UpdatesConnectionCreated_at | UpdatesConnectionUpdated_at | UpdatesConnectionName | UpdatesConnectionDetails | UpdatesConnectionSettings | UpdatesConnectionApp | UpdatesConnectionVersion | UpdatesConnectionPublished_at | createUpdatePayload | updateUpdatePayload | deleteUpdatePayload | UserAppBlock | UserAppBlockConnection | UserAppBlockAggregator | UserAppBlockGroupBy | UserAppBlockConnectionId | UserAppBlockConnectionCreated_at | UserAppBlockConnectionUpdated_at | UserAppBlockConnectionName | UserAppBlockConnectionType | UserAppBlockConnectionConfig | UserAppBlockConnectionSettings | UserAppBlockConnectionOwner | createUserAppBlockPayload | updateUserAppBlockPayload | deleteUserAppBlockPayload | UserMediaFolder | UserMediaFolderConnection | UserMediaFolderAggregator | UserMediaFolderGroupBy | UserMediaFolderConnectionId | UserMediaFolderConnectionCreated_at | UserMediaFolderConnectionUpdated_at | UserMediaFolderConnectionOwner | UserMediaFolderConnectionTitle | UserMediaFolderConnectionParent | UserMediaFolderConnectionType | createUserMediaFolderPayload | updateUserMediaFolderPayload | deleteUserMediaFolderPayload | UserMedia | UserMediaConnection | UserMediaAggregator | UserMediaGroupBy | UserMediaConnectionId | UserMediaConnectionCreated_at | UserMediaConnectionUpdated_at | UserMediaConnectionFile | UserMediaConnectionParent | UserMediaConnectionOwner | UserMediaConnectionTitle | UserMediaConnectionDescription | createUserMediaPayload | updateUserMediaPayload | deleteUserMediaPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserAggregatorSum | UsersPermissionsUserAggregatorAvg | UsersPermissionsUserAggregatorMin | UsersPermissionsUserAggregatorMax | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionName | UsersPermissionsUserConnectionAddress | UsersPermissionsUserConnectionCity | UsersPermissionsUserConnectionState | UsersPermissionsUserConnectionZip | UsersPermissionsUserConnectionAcceptEULA | UsersPermissionsUserConnectionLat | UsersPermissionsUserConnectionLong | UsersPermissionsUserConnectionDob | UsersPermissionsUserConnectionPhoto | UsersPermissionsUserConnectionCountry | UsersPermissionsUserConnectionPhone | UsersPermissionsUserConnectionUserBilling | UsersPermissionsUserConnectionUserShipping | UsersPermissionsUserConnectionSettings | UsersPermissionsUserConnectionFeatures | createUserPayload | updateUserPayload | deleteUserPayload
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  activation(id: ID!, publicationState: PublicationState): Activations
+  activations(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Activations]
+  activationsConnection(sort: String, limit: Int, start: Int, where: JSON): ActivationsConnection
+  analytic(id: ID!, publicationState: PublicationState): Analytic
+  analytics(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Analytic]
+  analyticsConnection(sort: String, limit: Int, start: Int, where: JSON): AnalyticConnection
+  app(id: ID!, publicationState: PublicationState): Apps
+  apps(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Apps]
+  appsConnection(sort: String, limit: Int, start: Int, where: JSON): AppsConnection
+  backup(id: ID!, publicationState: PublicationState): Backup
+  backups(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Backup]
+  backupsConnection(sort: String, limit: Int, start: Int, where: JSON): BackupConnection
+  campaign(id: ID!, publicationState: PublicationState): Campaign
+  campaigns(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Campaign]
+  campaignsConnection(sort: String, limit: Int, start: Int, where: JSON): CampaignConnection
+  distribution(id: ID!, publicationState: PublicationState): Distribution
+  distributions(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Distribution]
+  distributionsConnection(sort: String, limit: Int, start: Int, where: JSON): DistributionConnection
+  domain(id: ID!, publicationState: PublicationState): Domain
+  domains(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Domain]
+  domainsConnection(sort: String, limit: Int, start: Int, where: JSON): DomainConnection
+  dynamicContent(id: ID!, publicationState: PublicationState): DynamicContent
+  dynamicContents(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [DynamicContent]
+  dynamicContentsConnection(sort: String, limit: Int, start: Int, where: JSON): DynamicContentConnection
+  organization(id: ID!, publicationState: PublicationState): Organizations
+  organizations(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Organizations]
+  organizationsConnection(sort: String, limit: Int, start: Int, where: JSON): OrganizationsConnection
+  production(id: ID!, publicationState: PublicationState): Production
+  productions(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Production]
+  productionsConnection(sort: String, limit: Int, start: Int, where: JSON): ProductionConnection
+  property(id: ID!, publicationState: PublicationState): Property
+  properties(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Property]
+  propertiesConnection(sort: String, limit: Int, start: Int, where: JSON): PropertyConnection
+  shortcode(id: ID!, publicationState: PublicationState): Shortcode
+  shortcodes(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Shortcode]
+  shortcodesConnection(sort: String, limit: Int, start: Int, where: JSON): ShortcodeConnection
+  templateBlock(id: ID!, publicationState: PublicationState): TemplateBlock
+  templateBlocks(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [TemplateBlock]
+  templateBlocksConnection(sort: String, limit: Int, start: Int, where: JSON): TemplateBlockConnection
+  template(id: ID!, publicationState: PublicationState): Template
+  templates(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Template]
+  templatesConnection(sort: String, limit: Int, start: Int, where: JSON): TemplateConnection
+  update(id: ID!, publicationState: PublicationState): Updates
+  updates(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Updates]
+  updatesConnection(sort: String, limit: Int, start: Int, where: JSON): UpdatesConnection
+  userAppBlock(id: ID!, publicationState: PublicationState): UserAppBlock
+  userAppBlocks(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UserAppBlock]
+  userAppBlocksConnection(sort: String, limit: Int, start: Int, where: JSON): UserAppBlockConnection
+  userMediaFolder(id: ID!, publicationState: PublicationState): UserMediaFolder
+  userMediaFolders(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UserMediaFolder]
+  userMediaFoldersConnection(sort: String, limit: Int, start: Int, where: JSON): UserMediaFolderConnection
+  userMedia(id: ID!, publicationState: PublicationState): UserMedia
+  userMedias(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UserMedia]
+  userMediasConnection(sort: String, limit: Int, start: Int, where: JSON): UserMediaConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createActivation(input: createActivationInput): createActivationPayload
+  updateActivation(input: updateActivationInput): updateActivationPayload
+  deleteActivation(input: deleteActivationInput): deleteActivationPayload
+  createAnalytic(input: createAnalyticInput): createAnalyticPayload
+  updateAnalytic(input: updateAnalyticInput): updateAnalyticPayload
+  deleteAnalytic(input: deleteAnalyticInput): deleteAnalyticPayload
+  createApp(input: createAppInput): createAppPayload
+  updateApp(input: updateAppInput): updateAppPayload
+  deleteApp(input: deleteAppInput): deleteAppPayload
+  createBackup(input: createBackupInput): createBackupPayload
+  updateBackup(input: updateBackupInput): updateBackupPayload
+  deleteBackup(input: deleteBackupInput): deleteBackupPayload
+  createCampaign(input: createCampaignInput): createCampaignPayload
+  updateCampaign(input: updateCampaignInput): updateCampaignPayload
+  deleteCampaign(input: deleteCampaignInput): deleteCampaignPayload
+  createDistribution(input: createDistributionInput): createDistributionPayload
+  updateDistribution(input: updateDistributionInput): updateDistributionPayload
+  deleteDistribution(input: deleteDistributionInput): deleteDistributionPayload
+  createDomain(input: createDomainInput): createDomainPayload
+  updateDomain(input: updateDomainInput): updateDomainPayload
+  deleteDomain(input: deleteDomainInput): deleteDomainPayload
+  createDynamicContent(input: createDynamicContentInput): createDynamicContentPayload
+  updateDynamicContent(input: updateDynamicContentInput): updateDynamicContentPayload
+  deleteDynamicContent(input: deleteDynamicContentInput): deleteDynamicContentPayload
+  createOrganization(input: createOrganizationInput): createOrganizationPayload
+  updateOrganization(input: updateOrganizationInput): updateOrganizationPayload
+  deleteOrganization(input: deleteOrganizationInput): deleteOrganizationPayload
+  createProduction(input: createProductionInput): createProductionPayload
+  updateProduction(input: updateProductionInput): updateProductionPayload
+  deleteProduction(input: deleteProductionInput): deleteProductionPayload
+  createProperty(input: createPropertyInput): createPropertyPayload
+  updateProperty(input: updatePropertyInput): updatePropertyPayload
+  deleteProperty(input: deletePropertyInput): deletePropertyPayload
+  createShortcode(input: createShortcodeInput): createShortcodePayload
+  updateShortcode(input: updateShortcodeInput): updateShortcodePayload
+  deleteShortcode(input: deleteShortcodeInput): deleteShortcodePayload
+  createTemplateBlock(input: createTemplateBlockInput): createTemplateBlockPayload
+  updateTemplateBlock(input: updateTemplateBlockInput): updateTemplateBlockPayload
+  deleteTemplateBlock(input: deleteTemplateBlockInput): deleteTemplateBlockPayload
+  createTemplate(input: createTemplateInput): createTemplatePayload
+  updateTemplate(input: updateTemplateInput): updateTemplatePayload
+  deleteTemplate(input: deleteTemplateInput): deleteTemplatePayload
+  createUpdate(input: createUpdateInput): createUpdatePayload
+  updateUpdate(input: updateUpdateInput): updateUpdatePayload
+  deleteUpdate(input: deleteUpdateInput): deleteUpdatePayload
+  createUserAppBlock(input: createUserAppBlockInput): createUserAppBlockPayload
+  updateUserAppBlock(input: updateUserAppBlockInput): updateUserAppBlockPayload
+  deleteUserAppBlock(input: deleteUserAppBlockInput): deleteUserAppBlockPayload
+  createUserMediaFolder(input: createUserMediaFolderInput): createUserMediaFolderPayload
+  updateUserMediaFolder(input: updateUserMediaFolderInput): updateUserMediaFolderPayload
+  deleteUserMediaFolder(input: deleteUserMediaFolderInput): deleteUserMediaFolderPayload
+  createUserMedia(input: createUserMediaInput): createUserMediaPayload
+  updateUserMedia(input: updateUserMediaInput): updateUserMediaPayload
+  deleteUserMedia(input: deleteUserMediaInput): deleteUserMediaPayload
+
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

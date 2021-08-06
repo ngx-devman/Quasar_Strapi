@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/auth/:provider/callsback",
+      "handler": "authredirect.redirect",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

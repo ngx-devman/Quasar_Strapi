@@ -1,0 +1,31 @@
+{
+  "ogMeta": {
+    "title": "Sourcesync.io - End advertizing",
+    "type": "video"
+  },
+  "version": "S01E01",
+  "environments": {
+    "dev": "https://cdn.sourcesync.io/dev",
+    "development": "https://cdn.sourcesync.io/dev",
+    "stg": "https://cdn.sourcesync.io/stg",
+    "staging": "https://cdn.sourcesync.io/stg",
+    "prod": "https://cdn.sourcesync.io/prod",
+    "production": "https://cdn.sourcesync.io/prod",
+    "prime": "https://cdn.sourcesync.io/prime",
+    "local": "http://localhost:8001",
+    "unstable": "https://cdn.sourcesync.io/unstable",
+    "demo": "https://cdn.sourcesync.io/demo"
+  },
+  "sourceCodeApi": {
+    "dev": "https://api-dev.sourcesync.io",
+    "development": "https://api-dev.sourcesync.io",
+    "stg": "https://api-stg.sourcesync.io",
+    "staging": "https://api-stg.sourcesync.io",
+    "prod": "https://api.sourcesync.io",
+    "production": "https://api.sourcesync.io",
+    "prime": "https://api-prime.sourcesync.io",
+    "local": "http://localhost:1337",
+    "unstable": "https://api-unstable.sourcesync.io",
+    "demo": "https://api-demo.sourcesync.io"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/users/count",
+      "handler": "User.count",
+      "config": {
+        "prefix": "",
+        "policies": ["global::basicAuth"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "handler": "User.find",
+      "config": {
+        "policies": ["global::basicAuth"],
+        "prefix": "",
+        "description": "Retrieve all user documents",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User",
+          "actionType": "find"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/users/:id",
+      "handler": "User.findOne",
+      "config": {
+        "policies": ["global::basicAuth"],
+        "prefix": "",
+        "description": "Retrieve a single user depending on his id",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User",
+          "actionType": "findOne"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/users",
+      "handler": "User.create",
+      "config": {
+        "policies": ["filterUserFields"],
+        "prefix": ""
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/users/:id",
+      "handler": "User.update",
+      "config": {
+        "policies": ["filterUserFields"],
+        "prefix": "",
+        "description": "Update an existing user",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User",
+          "actionType": "update"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/auth/email-confirmation",
+      "handler": "Auth.emailConfirmation",
+      "config": {
+        "policies": ["notifyUserRegistration"],
+        "prefix": "",
+        "description": "Validate a user account",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User"
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/auth/sa/update-password",
+      "handler": "Auth.updatePasswordByServiceAccount",
+      "config": {
+        "policies": ["global::basicAuth", "global::isServiceAccount"],
+        "prefix": "",
+        "description": "Update password by Service account"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/auth/logout",
+      "handler": "Auth.logoutFromProvider",
+      "config": {
+        "policies": [],
+        "prefix": "",
+        "description": "Logout user from session",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "routes": [ 
+    {
+      "method": "GET",
+      "path": "/apps",
+      "handler": "Apps.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apps/count",
+      "handler": "Apps.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apps/:id",
+      "handler": "Apps.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apps/settings/:slug",
+      "handler": "Apps.settings",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apps/download/:slug",
+      "handler": "Apps.download",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/apps/download/:slug/:version",
+      "handler": "Apps.download",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/apps",
+      "handler": "Apps.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/apps/:id",
+      "handler": "Apps.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/apps/:id",
+      "handler": "Apps.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+    "method": "GET",
+    "path": "/user-media-folders",
+    "handler": "user-media-folder.find",
+    "config": {
+      "policies": []
+    }
+    },
+    {
+      "method": "GET",
+      "path": "/user-media-folders/count",
+      "handler": "user-media-folder.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-media-folders/:id",
+      "handler": "user-media-folder.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user-media-folders",
+      "handler": "user-media-folder.create",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/user-media-folders/:id",
+      "handler": "user-media-folder.update",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/user-media-folders/:id",
+      "handler": "user-media-folder.delete",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    }
+  ]
+}

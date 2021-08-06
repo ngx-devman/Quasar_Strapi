@@ -1,0 +1,33 @@
+{
+  "name": "jsonschemafaker",
+  "jest": {
+    "transformIgnorePatterns": [
+      "!node_modules/"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)?$": "<rootDir>/node_modules/babel-jest"
+    }
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "jsonSchemaFaker.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chance": "^1.1.4",
+    "faker": "^4.1.0",
+    "jest": "^25.1.0",
+    "json-schema-faker": "^0.5.0-rc23",
+    "regenerator-runtime": "^0.13.3",
+    "seedrandom": "^3.0.5"
+  }
+}

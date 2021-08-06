@@ -1,0 +1,5 @@
+const ircserv = require('ircserv')
+const config = require('config')
+const ircConfig = config.get('irc')
+const ircd = new ircserv.Server(ircConfig)
+ircd.listen(ircConfig.port)

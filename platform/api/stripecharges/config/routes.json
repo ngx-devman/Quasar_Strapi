@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "type": "json"
+  },
+  "name": {
+    "maxLength": 50,
+    "required": true,
+    "unique": true,
+    "type": "string"
+  }
+}

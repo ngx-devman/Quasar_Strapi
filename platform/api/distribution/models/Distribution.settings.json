@@ -1,0 +1,125 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "distributions",
+  "info": {
+    "name": "distribution",
+    "description": "A distribution is the only thing that can be experienced. It contains a set of rules and a reference to a production, which contains a timeline of data"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "populateCreatorFields": true,
+    "comment": "",
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "settings": {
+      "type": "json"
+    },
+    "keywords": {
+      "type": "json",
+      "description": "Keywords that describe this entity. Must be an JSON array."
+    },
+    "data": {
+      "type": "json"
+    },
+    "creator": {
+      "type": "email"
+    },
+    "property": {
+      "model": "property"
+    },
+    "type": {
+      "enum": [
+        "dynamic",
+        "overlay",
+        "legacy",
+        "video",
+        "audio",
+        "carousel",
+        "interactive",
+        "catalog",
+        "admin"
+      ],
+      "type": "enumeration"
+    },
+    "mediaType": {
+      "enum": [
+        "youtube",
+        "vimeo",
+        "file"
+      ],
+      "type": "enumeration"
+    },
+    "mediaId": {
+      "type": "string"
+    },
+    "mediaFile": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "media": {
+      "type": "text"
+    },
+    "cover": {
+      "description":"This column is deprecated. Please use coverMedia",
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "coverImage": {
+      "model": "user-media"
+    },
+    "slug": {
+      "unique": true,
+      "maxLength": 64,
+      "type": "string"
+    },
+    "chat": {
+      "type": "json"
+    },
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "clientId": {
+      "type": "string"
+    },
+    "production": {
+      "model": "production"
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "forBackupSetting": {
+      "default": true,
+      "type": "boolean"
+    },
+    "hidden": {
+      "type": "json",
+      "private": true
+    },
+    "forKuratorSetting": {
+      "default": true,
+      "type": "boolean"
+    },
+    "forStreamingSetting": {
+      "type": "boolean",
+      "default": false
+    },
+    "parent": {
+      "model": "user-media-folder"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "paths": {
+    "/activations/populate": {
+      "post": {
+        "requestBody": {
+          "description": "List of activations to be populated.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "externalId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retrieve activations document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Activations"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

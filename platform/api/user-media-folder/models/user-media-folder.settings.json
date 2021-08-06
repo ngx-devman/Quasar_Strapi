@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_media_folders",
+  "info": {
+    "name": "user-media-folder"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "timestamps": true,
+    "increments": true,
+    "comment": ""
+  },
+  "attributes": {
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "title": {
+      "type": "string"
+    },
+    "parent": {
+      "model": "user-media-folder"
+    },
+    "type" : {
+      "type": "enumeration",
+      "enum" : [
+        "asset",
+        "metacontent",
+        "content",
+        "liveContent"
+      ],
+      "default": "asset"
+    }
+  }
+}

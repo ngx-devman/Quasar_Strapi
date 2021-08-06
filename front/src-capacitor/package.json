@@ -1,0 +1,13 @@
+{
+  "name": "rules-engine-front",
+  "version": "0.9.99a.7",
+  "description": "Entertainment Plus+",
+  "author": "Nick Steele <njsteele@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "^1.5.1",
+    "@capacitor/cli": "^1.0.0",
+    "@capacitor/core": "^1.0.0",
+    "@capacitor/ios": "^1.5.1"
+  }
+}

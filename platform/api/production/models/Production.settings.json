@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "productions",
+  "info": {
+    "name": "production",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "settings": {
+      "type": "json"
+    },
+    "keywords": {
+      "type": "json",
+      "description": "Keywords that describe this entity. Must be an JSON array."
+    },
+    "data": {
+      "type": "json"
+    },
+    "type": {
+      "enum": [
+        "legacy",
+        "video",
+        "audio",
+        "carousel",
+        "interactive",
+        "catalog"
+      ],
+      "type": "enumeration"
+    },
+    "fingerprints": {
+      "type": "json"
+    },
+    "media": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string"
+    },
+    "organization": {
+      "model": "organizations"
+    },
+    "property": {
+      "model": "property"
+    },
+    "mainImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "hidden": {
+      "type": "json",
+      "private": true
+    }
+  }
+}

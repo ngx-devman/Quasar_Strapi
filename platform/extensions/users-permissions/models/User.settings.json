@@ -1,0 +1,136 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users-permissions_user",
+  "info": {
+    "name": "user",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "model": "role",
+      "via": "users",
+      "plugin": "users-permissions",
+      "configurable": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "AcceptEULA": {
+      "type": "boolean"
+    },
+    "organizations": {
+      "collection": "organizations",
+      "via": "users"
+    },
+    "lat": {
+      "type": "float"
+    },
+    "long": {
+      "type": "float"
+    },
+    "dob": {
+      "type": "date"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "activations": {
+      "collection": "activations"
+    },
+    "country": {
+      "enum": [
+        "USA"
+      ],
+      "type": "enumeration",
+      "default": "USA"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "distributions": {
+      "collection": "distribution"
+    },
+    "userBilling": {
+      "type": "json"
+    },
+    "userShipping": {
+      "type": "json"
+    },
+    "domains": {
+      "collection": "domain",
+      "via": "users"
+    },
+    "properties": {
+      "collection": "property",
+      "via": "users"
+    },
+    "settings": {
+      "type": "json"
+    },
+    "features": {
+      "type": "json"
+    }
+  }
+}

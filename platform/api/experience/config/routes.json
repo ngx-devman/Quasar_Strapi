@@ -1,0 +1,76 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/experience/data/:id",
+      "handler": "Experience.data",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/experience/data/:id/:activation",
+      "handler": "Experience.data",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/experience/:id/method/:name/",
+      "handler": "Experience.method",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/experience/:id/method/:name/",
+      "handler": "Experience.method",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/experience/:id",
+      "handler": "Experience.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/experience/:id/:activation",
+      "handler": "Experience.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/experience/:id/:path1/:path2",
+      "handler": "Experience.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/experience/:id/:path1/:path2/:path3",
+      "handler": "Experience.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/experience/:id/:path1/:path2/:path3/:path4",
+      "handler": "Experience.index",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

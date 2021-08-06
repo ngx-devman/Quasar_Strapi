@@ -1,0 +1,58 @@
+{
+  "collectionName": "campaigns",
+  "info": {
+    "name": "campaign",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false,
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "dateStart": {
+      "type": "datetime"
+    },
+    "dateEnd": {
+      "type": "datetime"
+    },
+    "targetUrlDomains": {
+      "type": "json"
+    },
+    "targetDistributions": {
+      "collection": "distribution"
+    },
+    "activations": {
+      "collection": "activations"
+    },
+    "targetKeywords": {
+      "type": "json"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "remainingPreviews": {
+      "type": "biginteger",
+      "default": 0
+    },
+    "remainingViews": {
+      "type": "biginteger",
+      "default": 0
+    },
+    "remainingActions": {
+      "type": "biginteger",
+      "default": 0
+    },
+    "criteria": {
+      "type": "json"
+    }
+  }
+}

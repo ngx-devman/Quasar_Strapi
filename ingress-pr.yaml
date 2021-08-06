@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    cattle.io/creator: norman
+  name: pr-MYAPP
+  namespace: api-dev
+spec:
+  rules:
+  - host: MYAPP.sourcesync.io
+    http:
+      paths:
+      - backend:
+          serviceName: pr-MYAPP
+          servicePort: 1337

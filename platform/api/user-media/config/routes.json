@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/user-medias",
+      "handler": "user-media.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-medias/count",
+      "handler": "user-media.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-medias/:id",
+      "handler": "user-media.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user-medias",
+      "handler": "user-media.create",
+      "config": {
+        "policies": [
+          "global::isOwner",
+          "validateFile"
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/user-medias/:id",
+      "handler": "user-media.update",
+      "config": {
+        "policies": [
+          "global::isOwner",
+          "validateFile"
+        ]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/user-medias/:id",
+      "handler": "user-media.delete",
+      "config": {
+        "policies": [
+          "global::isOwner"
+        ]
+      }
+    }
+  ]
+}

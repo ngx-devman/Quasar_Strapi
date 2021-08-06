@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/administrator/pulse/:id",
+      "handler": "administrator.pulse",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/administrator/config/:id",
+      "handler": "administrator.config",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

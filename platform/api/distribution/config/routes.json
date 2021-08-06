@@ -1,0 +1,68 @@
+{
+  "routes": [
+    {
+    "method": "GET",
+    "path": "/distributions",
+    "handler": "Distribution.find",
+    "config": {
+      "policies": []
+    }
+    },
+    {
+      "method": "GET",
+      "path": "/distributions/count",
+      "handler": "Distribution.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/distributions/:id",
+      "handler": "Distribution.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/distributions",
+      "handler": "Distribution.create",
+      "config": {
+        "policies": ["global::isOwner"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/distributions/:id",
+      "handler": "Distribution.update",
+      "config": {
+        "policies": ["global::isOwner", "backup"]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/distributions/:id",
+      "handler": "Distribution.delete",
+      "config": {
+        "policies": ["global::isOwner", "backup"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/updateDistributionsSetting/:id",
+      "handler": "Distribution.updateSettings",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/distributions/copy/:from/:to",
+      "handler": "Distribution.copy",
+      "config": {
+        "policies": ["backup"]
+      }
+    }
+  ]
+}

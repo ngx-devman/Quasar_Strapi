@@ -1,0 +1,47 @@
+<html>
+  <head></head>
+  <style>
+    body { background-color: brown; }
+  </style>
+  <body>
+    <script type="text/javascript" src="https://cdn.embed.ly/player-0.1.0.min.js"></script>
+    <!-- <iframe id="myFrame" src="//cdn.embedly.com/widgets/media.html?src=http%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F83513993&url=http%3A%2F%2Fvimeo.com%2F83513993&image=http%3A%2F%2Fb.vimeocdn.com%2Fts%2F460%2F017%2F460017876_1280.jpg&key=internal&type=text%2Fhtml&schema=vimeo" width="720" height="405"></iframe> -->
+    <iframe id="myFrame" src="https://experience-dev.sourcesync.io/44" width="720" height="710"></iframe>
+    <script>
+      function sendMessage(method, value = undefined) {
+        console.log(`<< Sending ${method}...`)
+        if (method === 'orientation') player.send({method, value})
+        else if (method.startsWith('get')) {
+          const callback = value => receiveMessage(method, value)
+          player[method] ? player[method](callback) : player.send({ method }, callback)
+        } else player[method] ? player[method]() : player.send({ method })
+      }
+      function receiveMessage(name, value) {
+        console.log('>> received', name, value)
+      }
+      function listenForEvents(names) {
+        names.forEach(name => {
+          player.on(name, e => receiveMessage(name, e))  
+        })
+      }
+      elm = window.frames['myFrame']
+      console.log('### Creating a Player.js instance attached to the frame holding SourceSync content')
+      player = new playerjs.Player(elm)
+      player.on('ready', e => {
+        console.log('### The following Player.js commands are supported:', e)
+        listenForEvents(['activationScroll', 'activation', 'click', 'error', 'timeupdate', 'data:config', 'data:content', 'data:metadata'])
+      })
+      </script>
+    <br/>
+    <div>
+      <input type="button" value="Play" onclick="sendMessage('play')" />
+      <input type="button" value="Pause" onclick="sendMessage('pause')" />
+      <input type="button" value="Set orientation:portrait" onclick="sendMessage('orientation', 'portrait')" />
+      <input type="button" value="Set orientation:landscape" onclick="sendMessage('orientation', 'landscape')" />
+      <input type="button" value="GetCurrentTime" onclick="sendMessage('getCurrentTime')" />
+      <input type="button" value="getConfig" onclick="sendMessage('getConfig')" />
+      <input id="goto" type="text" value="1"/>
+      <input type="button" value="Go" onclick="player.setCurrentTime(parseInt(document.getElementById('goto').value))" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organizations",
+  "info": {
+    "name": "organizations",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "mainImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "settings": {
+      "type": "json"
+    },
+    "users": {
+      "via": "organizations",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "domain": {
+      "model": "domain",
+      "via": "organizations"
+    },
+    "hidden": {
+      "type": "json",
+      "private": true
+    }
+  }
+}

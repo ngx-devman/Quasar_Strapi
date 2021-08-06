@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "properties",
+  "info": {
+    "name": "property",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "MainImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "SetStorageMB": {
+      "type": "integer"
+    },
+    "SetNumberApiSessions": {
+      "type": "integer"
+    },
+    "SetNumTitles": {
+      "type": "integer"
+    },
+    "SetNumberDistributions": {
+      "type": "integer"
+    },
+    "SetSessionsExhausted": {
+      "type": "boolean"
+    },
+    "SetStorageExhausted": {
+      "type": "boolean"
+    },
+    "SetTitlesExhausted": {
+      "type": "boolean"
+    },
+    "SetDistributionsExhausted": {
+      "type": "boolean"
+    },
+    "parent": {
+      "model": "property"
+    },
+    "organization": {
+      "model": "organizations"
+    },
+    "settings": {
+      "type": "json"
+    },
+    "keywords": {
+      "type": "json",
+      "description": "Keywords that describe this entity. Must be an JSON array."
+    },
+    "users": {
+      "via": "properties",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "hidden": {
+      "type": "json",
+      "private": true
+    }
+  }
+}

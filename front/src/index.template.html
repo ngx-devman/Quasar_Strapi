@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test</title>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <meta property="og:title" content="Test">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="https://cdn.cms-twdigitalassets.com/content/dam/blog-twitter/official/en_us/products/2017/rethinking-our-default-profile-photo/Avatar-Blog2-Round1.png.img.fullhd.medium.png">
+  <meta property="og:url" content="">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.sourcesync.io/experience/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="192x192" href="https://cdn.sourcesync.io/experience/favicon/android-icon-192x192.png">
+  <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="32x32" href="https://cdn.sourcesync.io/experience/favicon/favicon-32x32.png">
+  <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="96x96" href="https://cdn.sourcesync.io/experience/favicon/favicon-96x96.png">
+  <link rel="icon" type="imagehttps://cdn.sourcesync.io/experience/favicons/png" sizes="16x16" href="https://cdn.sourcesync.io/experience/favicon/favicon-16x16.png">
+  <style>
+    .validJwt {display: none;}
+    .invalidJwt {display:block;padding:20px;}
+  </style>
+</head>
+<script>
+  /*
+      THIS FILE WILL NEVER BE PUBLIC - DEVELOPMENT PURPOSES ONLY
+  */
+  const distribution = window.location.pathname.split('/')[1] || 'debug'
+  const server = '<%=apiName %>'
+  const jwtSecret = '<%=jwtSecret %>'
+  let settings = {}
+  // Allow the user to login too...
+  const hasLocalStorage = () => {
+    try {
+      localStorage.setItem('set', 'set')
+      localStorage.removeItem('set')
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+  fetch(server + '/experience/data/' + distribution + (window.location.search || ''), settings)
+    .then(async response => {
+      const data = await(response.json())
+      window.SourceDigital = data
+      window.dispatchEvent( new MessageEvent('message', {data: JSON.stringify({ context: 'player.js', method: 'reboot', version: '0.0.11' })}))
+    })
+</script>
+<body>
+  <!-- DO NOT touch the following DIV -->
+  <div id="q-app"></div>
+  <!-- JWT Validation -->
+  <div id='validateJwt' class='validJwt'>
+    <h4>Your token has expired...</h4>
+    <h5>You can generate a new one below with this secret: <script>document.write(jwtSecret)</script></h5>
+    <iframe id='iframe' src='' width='100%' height='600' frameBorder='0'></iframe>
+    <p>Hint: Remember to add an <code>"id"</code> in the payload, matching the one you had.</p>
+  </div>
+</body>
+</html>
+<!-- JWT Validation -->
+<script>
+  let jwtToken
+  let currentTime = Date.now() / 1000
+  let validateJwt = document.getElementById('validateJwt')
+  let iframeSrc = document.getElementById("iframe")
+  if (localStorage.token) {
+    jwtToken = JSON.parse(atob(localStorage.token.split('.')[1]))
+    if (currentTime >= jwtToken.exp) {
+      validateJwt.className = 'invalidJwt'
+      // Only load jwt.io when there's an invalid token, to avoid console errors/warnings from its site each time you load the page.
+      iframeSrc.setAttribute('src', 'https://jwt.io/#debugger-io')
+    }
+  }
+</script>
+<!-- /// -->
+<!-- Google Analytics -->
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-165688420-2', 'auto', 'initial');
+  ga('initial.send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <!-- End Google Analytics -->

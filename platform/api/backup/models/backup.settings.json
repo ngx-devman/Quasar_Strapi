@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "backups",
+  "info": {
+    "name": "backup",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": "",
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "resource": {
+      "type": "string"
+    },
+    "resourceID": {
+      "type": "biginteger",
+      "required": true
+    },
+    "data": {
+      "type": "json"
+    },
+    "type": {
+      "type": "string"
+    },
+    "user": {
+      "type": "string"
+    }
+  }
+}
